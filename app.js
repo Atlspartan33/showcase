@@ -37,17 +37,21 @@
     ).join("");
   }
 
+  function refilter() {
+    renderChips();
+    renderGrid();
+    const w = $("#work");
+    if (w.getBoundingClientRect().top < 0) w.scrollIntoView();
+  }
   $("#chips").addEventListener("click", e => {
     const b = e.target.closest(".chip");
     if (!b) return;
     cat = b.dataset.cat;
-    renderChips();
-    renderGrid();
+    refilter();
   });
   $("#live-only").addEventListener("change", e => {
     liveOnly = e.target.checked;
-    renderChips();
-    renderGrid();
+    refilter();
   });
 
   // ── Cards ──────────────────────────────────────────────
@@ -86,13 +90,15 @@
   // ── Detail sheet ───────────────────────────────────────
   const sheet = $("#sheet");
   let openedByNav = false;
+  let returnFocus = null;
 
   function qrImg(url) {
     if (!window.qrcode) return "";
     const q = qrcode(0, "M");
     q.addData(url);
     q.make();
-    return `<img src="${q.createDataURL(8, 0)}" alt="QR code for ${esc(url)}">`;
+    const size = q.getModuleCount() * 6 + 48;
+    return `<img src="${q.createDataURL(6, 24)}" width="${size}" height="${size}" alt="QR code for ${esc(url)}">`;
   }
 
   function showQR(url) {
@@ -125,7 +131,10 @@
         <button type="button" class="btn secondary" id="qr-btn" aria-expanded="false">Show QR code</button>`;
       $("#qr-btn").addEventListener("click", e => {
         const open = $("#qr-wrap").hidden;
-        if (open) showQR(p.url); else $("#qr-wrap").hidden = true;
+        if (open) {
+          showQR(p.url);
+          $("#qr-wrap").scrollIntoView({ block: "end" });
+        } else $("#qr-wrap").hidden = true;
         e.currentTarget.setAttribute("aria-expanded", String(open));
         e.currentTarget.textContent = open ? "Hide QR code" : "Show QR code";
       });
@@ -150,7 +159,9 @@
       try {
         if (navigator.share) await navigator.share({ title: "Terrell Massey Sr. — Builds", url: SITE_URL });
         else { await navigator.clipboard.writeText(SITE_URL); b.textContent = "Copied ✓"; }
-      } catch { b.textContent = "Copy failed — long-press the address bar"; }
+      } catch (err) {
+        if (err.name !== "AbortError") b.textContent = "Couldn't copy. The link is shown above.";
+      }
     });
     if (navigator.share) $("#copy-btn").textContent = "Share link";
     showQR(SITE_URL);
@@ -163,7 +174,10 @@
     if (p) fillProject(p);
     else if (h === "#share") fillShare();
     else { if (sheet.open) sheet.close(); return; }
-    if (!sheet.open) sheet.showModal();
+    if (!sheet.open) {
+      returnFocus = document.activeElement;
+      sheet.showModal();
+    }
     sheet.querySelector(".sheet-inner").scrollTop = 0;
     $("#sheet-close").focus();
   }
@@ -183,8 +197,23 @@
   sheet.addEventListener("close", () => {
     sheet.querySelector("video")?.pause();
     openedByNav = false;
+    // Closed some other way (e.g. Android back): drop the stale hash so the same card can reopen.
+    if (/^#(p\/|share$)/.test(location.hash)) history.replaceState(null, "", location.pathname + location.search);
+    if (returnFocus?.isConnected) returnFocus.focus({ preventScroll: true });
   });
-  $("#share-site").addEventListener("click", () => { location.hash = "share"; });
+  $("#share-site").addEventListener("click", () => {
+    if (location.hash === "#share" && !sheet.open) route();
+    else location.hash = "share";
+  });
+  // Tapping the card whose hash is already in the URL fires no hashchange; open it directly.
+  document.addEventListener("click", e => {
+    const a = e.target.closest('a[href^="#p/"]');
+    if (a && a.getAttribute("href") === location.hash && !sheet.open) {
+      e.preventDefault();
+      openedByNav = false;
+      route();
+    }
+  });
 
   renderChips();
   renderGrid();
