@@ -1,0 +1,894 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Jelly Doodles</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap">
+<style>
+  :root{
+    color-scheme: light;
+    --paper:#F5F7FC;
+    --grid:#DCE3F2;
+    --ink:#1A1633;
+    --muted:#4A4666;
+    --chip:#ECEFF9;
+    --pink:#FF5DA2;
+    --font:"Fredoka","Nunito","Segoe UI",Roboto,sans-serif;
+  }
+  html,body{height:100%}
+  body{margin:0;overflow:hidden;color:var(--ink);font-family:var(--font);-webkit-font-smoothing:antialiased;
+    background-color:var(--paper);
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:28px 28px}
+  #world{position:fixed;inset:0;width:100%;height:100%;display:block;touch-action:none}
+
+  .top{position:fixed;left:0;right:0;top:0;z-index:2;display:flex;justify-content:space-between;align-items:baseline;gap:12px;
+    padding:calc(env(safe-area-inset-top,0px) + 16px) 18px 0;pointer-events:none}
+  .name{margin:0;font-weight:700;font-size:28px;letter-spacing:-.01em;line-height:1}
+  .count{margin:0;font-weight:600;font-size:16px;color:var(--muted)}
+  .tip{position:fixed;left:50%;transform:translateX(-50%);top:calc(env(safe-area-inset-top,0px) + 56px);z-index:2;margin:0;
+    padding:10px 16px;border-radius:999px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;white-space:nowrap;max-width:calc(100% - 32px);
+    overflow:hidden;text-overflow:ellipsis;pointer-events:none}
+
+  .hint{position:fixed;left:0;right:0;top:22%;z-index:1;text-align:center;padding:0 24px;pointer-events:none;transition:opacity .7s,transform .7s}
+  .hint h1{margin:0;font-weight:700;font-size:clamp(40px,8.5vw,92px);line-height:.95;letter-spacing:-.02em;text-wrap:balance}
+  .hint h1 span{color:#D02A6E}
+  .hint p{margin:14px auto 0;max-width:36ch;font-size:clamp(16px,2.3vw,20px);line-height:1.4;color:var(--muted);font-weight:500}
+  .hint.gone{opacity:0;transform:translateY(-12px)}
+
+  .rail{position:fixed;left:12px;top:calc(env(safe-area-inset-top,0px) + 64px);z-index:3;display:flex;flex-direction:column;gap:6px;padding:6px;
+    background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:0 5px 0 var(--ink)}
+  .sw{width:44px;height:44px;min-height:0;padding:0;border-radius:50%;background:var(--c);box-shadow:inset 0 0 0 2.5px var(--ink);position:relative}
+  .sw.rainbow{background:conic-gradient(#FF5DA2,#FF8A3D,#FFD23F,#8BE04E,#3CCFE8,#9B7BFF,#FF5DA2)}
+  .sw[aria-pressed="true"]{box-shadow:inset 0 0 0 2.5px var(--ink),0 0 0 3px #fff,0 0 0 6px var(--ink)}
+  .sw[aria-pressed="true"]::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--ink);transform:translate(-50%,-50%)}
+
+  .bar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(env(safe-area-inset-bottom,0px) + 16px);z-index:3;
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:8px;width:max-content;max-width:calc(100% - 32px);box-sizing:border-box;
+    background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:0 6px 0 var(--ink)}
+  button{font:inherit;font-weight:600;font-size:17px;color:var(--ink);background:var(--chip);border:0;border-radius:12px;
+    min-height:52px;padding:0 16px;display:inline-flex;align-items:center;justify-content:center;gap:8px;cursor:pointer;
+    transition:transform .08s,background .15s,color .15s}
+  button:active{transform:translateY(2px) scale(.97)}
+  button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+  button svg{width:22px;height:22px;flex:none}
+  .drop{background:var(--pink);color:var(--ink);font-weight:700;font-size:19px;box-shadow:inset 0 -4px 0 rgba(26,22,51,.25)}
+  .seg{display:flex;gap:4px;padding:3px;border-radius:14px;background:var(--chip)}
+  .seg button{background:transparent;min-height:48px}
+  .seg button[aria-pressed="true"]{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 3px var(--ink)}
+  #gravName{font-weight:700}
+  #clear.armed{background:var(--ink);color:#fff}
+
+  @media (pointer:coarse){ button,.seg button{min-height:64px} .sw{width:52px;height:52px} }
+  @media (max-width:540px){
+    .bar{gap:6px;padding:6px}
+    button{font-size:16px;padding:0 12px}
+    .name{font-size:24px}
+    .rail{left:8px;gap:4px;padding:4px}
+    .sw{width:40px;height:40px}
+    .tip{box-sizing:border-box;left:calc(50% + 33px);max-width:calc(100% - 98px);white-space:normal;text-align:center}
+  }
+  @media (max-width:540px) and (pointer:coarse){ .sw{width:44px;height:44px} }
+  @media (max-height:640px){ .rail{flex-direction:row;flex-wrap:nowrap} .tip{top:calc(env(safe-area-inset-top,0px) + 8px)} }
+  .sw:focus-visible{outline-offset:8px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  @media (prefers-reduced-motion:reduce){ .hint,button{transition:none} }
+</style>
+
+<canvas id="world" role="img" aria-label="Sketchbook where drawn shapes become wobbly jelly creatures"></canvas>
+
+<header class="top">
+  <p class="name">Jelly Doodles</p>
+  <p class="count" id="count" aria-live="polite"></p>
+</header>
+<p class="tip" id="tip" aria-live="polite" hidden></p>
+<p class="sr" id="said" aria-live="polite"></p>
+
+<div class="hint" id="hint">
+  <h1>Draw a shape. <span>It comes alive.</span></h1>
+  <p>Grab a jelly to fling it. Tap one to say hi. Pick Dress up for hats and paint.</p>
+</div>
+
+<div class="rail" role="group" aria-label="Color for new jellies and paint" id="rail"></div>
+
+<nav class="bar" id="bar" aria-label="Jelly Doodles controls">
+  <button id="drop" class="drop" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v10m-4-4 4 4 4-4"/><ellipse cx="12" cy="18" rx="6" ry="3"/></svg>Drop a jelly
+  </button>
+  <div class="seg" role="group" aria-label="What your finger does">
+    <button id="modeJelly" type="button" aria-pressed="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round" aria-hidden="true"><path d="M5 15c-2-5 2-10 7-10s9 4 7 9-4 6-7 6-6-1-7-5z"/></svg>Jelly
+    </button>
+    <button id="modeWall" type="button" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true"><path d="M3 7c5 0 7 10 18 10"/></svg>Wall
+    </button>
+    <button id="modeDress" type="button" aria-pressed="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M4 16h16l-2-5-3 3-3-7-3 7-3-3z"/><path d="M4 19h16"/></svg>Dress up
+    </button>
+  </div>
+  <button id="grav" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M12 14v7m-3-3 3 3 3-3"/></svg>Gravity: <span id="gravName">Earth</span>
+  </button>
+  <button id="shake" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 8l3-3M4 16l3 3M20 8l-3-3M20 16l-3 3"/><rect x="8" y="6" width="8" height="12" rx="2"/></svg>Shake
+  </button>
+  <button id="clear" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/></svg><span id="clearLabel">Pop all</span>
+  </button>
+  <button id="sound" type="button">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path id="waves" d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg><span id="soundLabel">Sound on</span>
+  </button>
+</nav>
+
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const cv = $('world'), g = cv.getContext('2d');
+  const INK = '#1A1633';
+  const PALETTE = ['#FF5DA2','#FF8A3D','#FFD23F','#8BE04E','#3CCFE8','#9B7BFF','#FF5A5A'];
+  const COLOR_NAMES = ['pink','orange','yellow','green','blue','purple','red'];
+  const GRAV = [{ name:'Earth', g:2200 }, { name:'Moon', g:380 }, { name:'Space', g:0 }];
+  const HATS = ['party hat','crown','bow','top hat','flower','glasses'];
+  const NAMES = ['Wobbles','Squish','Blorp','Jiggles','Noodle','Gloop','Bouncy','Sprinkle','Mochi','Pudding','Wiggles','Boing','Marshmallow',
+    'Gumdrop','Bubbles','Squidge','Twinkle','Dumpling','Sir Squishy','Jellybean','Pickles','Nugget','Muffin','Waffles','Peaches','Zoom'];
+  const SUB = 4, SM_K = 0.075, WALL_R = 7, MAX_JELLIES = 14, SAVE_KEY = 'jelly-doodles-zoo-v1';
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let gmode = 0, W = 0, H = 0, floorY = 0, colorIdx = 0, mode = 'jelly', pick = -1; // pick -1 = rainbow
+
+  // ---------- math ----------
+  const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
+  const hyp = Math.hypot;
+  const rand = (a, b) => a + Math.random()*(b - a);
+  function polyArea(p){ let a = 0; for(let i = 0, n = p.length; i < n; i++){ const q = p[i], r = p[(i + 1)%n]; a += q.x*r.y - r.x*q.y; } return a/2; }
+  function pathLen(p, closed){ let L = 0; const n = p.length; for(let i = 0; i < (closed ? n : n - 1); i++){ const a = p[i], b = p[(i + 1)%n]; L += hyp(b.x - a.x, b.y - a.y); } return L; }
+  function inPoly(x, y, p){ let c = false; for(let i = 0, j = p.length - 1; i < p.length; j = i++){ const a = p[i], b = p[j]; if(((a.y > y) !== (b.y > y)) && (x < (b.x - a.x)*(y - a.y)/(b.y - a.y) + a.x)) c = !c; } return c; }
+  function closest(px, py, ax, ay, bx, by){ const dx = bx - ax, dy = by - ay, l = dx*dx + dy*dy; const t = l ? clamp(((px - ax)*dx + (py - ay)*dy)/l, 0, 1) : 0; return { x: ax + dx*t, y: ay + dy*t, t }; }
+  function chaikin(p, closed){
+    const out = [], n = p.length;
+    if(!closed) out.push(p[0]);
+    for(let i = 0; i < (closed ? n : n - 1); i++){ const a = p[i], b = p[(i + 1)%n];
+      out.push({ x: .75*a.x + .25*b.x, y: .75*a.y + .25*b.y }, { x: .25*a.x + .75*b.x, y: .25*a.y + .75*b.y }); }
+    if(!closed) out.push(p[n - 1]);
+    return out;
+  }
+  function resample(p, n, closed){
+    const pts = closed ? [...p, p[0]] : p; const L = [0];
+    for(let i = 1; i < pts.length; i++) L.push(L[i - 1] + hyp(pts[i].x - pts[i - 1].x, pts[i].y - pts[i - 1].y));
+    const total = L[L.length - 1], step = closed ? total/n : total/(n - 1), out = [];
+    let j = 1;
+    for(let k = 0; k < n; k++){
+      const d = k*step; while(j < L.length - 1 && L[j] < d) j++;
+      const a = pts[j - 1], b = pts[j], seg = (L[j] - L[j - 1]) || 1, t = clamp((d - L[j - 1])/seg, 0, 1);
+      out.push({ x: a.x + (b.x - a.x)*t, y: a.y + (b.y - a.y)*t });
+    }
+    return out;
+  }
+  function shade(hex, k){
+    const c = [1,3,5].map(i => parseInt(hex.slice(i, i + 2), 16));
+    return `rgb(${c.map(v => Math.round(k < 0 ? v*(1 + k) : v + (255 - v)*k)).join(',')})`;
+  }
+  const colorFor = () => pick >= 0 ? PALETTE[pick] : PALETTE[colorIdx++ % PALETTE.length];
+
+  // ---------- faces: find room for googly eyes inside any doodle ----------
+  function placeFace(rest){
+    let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+    rest.forEach(q => { x0 = Math.min(x0, q.x); y0 = Math.min(y0, q.y); x1 = Math.max(x1, q.x); y1 = Math.max(y1, q.y); });
+    const w = x1 - x0, h = y1 - y0, n = rest.length;
+    const edgeDist = (x, y) => { let m = Infinity; for(let i = 0; i < n; i++){ const a = rest[i], b = rest[(i + 1)%n]; const c = closest(x, y, a.x, a.y, b.x, b.y); m = Math.min(m, hyp(x - c.x, y - c.y)); } return m; };
+    const fits = (x, y, r) => inPoly(x, y, rest) && edgeDist(x, y) > r*1.08;
+    let r = clamp(Math.min(w, h)*0.14, 6, 26);
+    for(let tries = 0; tries < 3; tries++, r *= 0.75){
+      const s = r*1.28;
+      for(let fy = 0.28; fy <= 0.64; fy += 0.04){
+        const y = y0 + h*fy;
+        for(const fx of [0, -0.08, 0.08, -0.16, 0.16]){
+          const x = x0 + w*(0.5 + fx);
+          if(fits(x - s, y, r) && fits(x + s, y, r)){
+            const my = y + r*1.9;
+            const mouth = inPoly(x, my, rest) && edgeDist(x, my) > r*0.7 ? { x, y: my, w: s*1.05 } : null;
+            return { eyes: [{ x: x - s, y, r }, { x: x + s, y, r }], mouth, w, h, top: y0 };
+          }
+        }
+      }
+    }
+    let best = { x: 0, y: 0, d: 0 };
+    for(let gx = 0; gx < 14; gx++) for(let gy = 0; gy < 14; gy++){
+      const x = x0 + w*(gx + .5)/14, y = y0 + h*(gy + .5)/14;
+      if(inPoly(x, y, rest)){ const d = edgeDist(x, y); if(d > best.d) best = { x, y, d }; }
+    }
+    return { eyes: [{ x: best.x, y: best.y, r: clamp(best.d*0.75, 3, 14) }], mouth: null, w, h, top: y0 };
+  }
+
+  // ---------- jellies ----------
+  const jellies = [], walls = [], particles = [];
+  class Jelly {
+    constructor(outline, color, extra){
+      const n = outline.length;
+      let cx = 0, cy = 0; outline.forEach(q => { cx += q.x; cy += q.y; }); cx /= n; cy /= n;
+      this.n = n;
+      this.p = outline.map(q => ({ x: q.x, y: q.y, px: q.x, py: q.y }));
+      this.rest = outline.map(q => ({ x: q.x - cx, y: q.y - cy }));
+      this.edge = this.rest.map((a, i) => { const b = this.rest[(i + 1)%n]; return hyp(b.x - a.x, b.y - a.y); });
+      this.area = Math.abs(polyArea(outline)); this.size = Math.sqrt(this.area);
+      this.color = color; this.dark = shade(color, -0.35);
+      this.cx = this.lcx = cx; this.cy = this.lcy = cy; this.ang = this.lang = 0; this.vx = 0; this.vy = 0; this.speed = 0; this.tilt = 0;
+      this.face = placeFace(this.rest);
+      this.pupils = this.face.eyes.map(() => ({ x: 0, y: 0, vx: 0, vy: 0 }));
+      const t = performance.now();
+      this.blinkAt = t + 1200 + Math.random()*3000; this.blinkUntil = 0;
+      this.lastBoing = 0; this.giggleUntil = 0; this.lastPoke = t; this.sleeping = false; this.nextIdle = t + rand(3000, 8000); this.nextZ = 0;
+      this.name = (extra && extra.name) || freshName();
+      this.hat = extra && extra.hat != null ? extra.hat : -1;
+      this.paint = (extra && extra.paint) || [];
+      this.say = null; this.met = !!(extra && extra.name);
+      this.anchor = this.hatAnchor();
+      this.bb = { x0: 0, y0: 0, x1: 0, y1: 0 }; this.updateBB();
+    }
+    updateBB(){ let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+      for(const q of this.p){ if(q.x < x0) x0 = q.x; if(q.x > x1) x1 = q.x; if(q.y < y0) y0 = q.y; if(q.y > y1) y1 = q.y; }
+      this.bb.x0 = x0; this.bb.y0 = y0; this.bb.x1 = x1; this.bb.y1 = y1; }
+    toWorld(x, y){ const c = Math.cos(this.ang), s = Math.sin(this.ang); return [this.cx + x*c - y*s, this.cy + x*s + y*c]; }
+    toLocal(x, y){ const c = Math.cos(-this.ang), s = Math.sin(-this.ang), dx = x - this.cx, dy = y - this.cy; return [dx*c - dy*s, dx*s + dy*c]; }
+    // velocity nudge in px per physics substep (×240 ≈ px/s); +iy is up
+    kick(ix, iy, jitter){ for(const q of this.p){ q.px -= ix + (Math.random() - .5)*jitter; q.py += iy + (Math.random() - .5)*jitter; } }
+    hatAnchor(){
+      const f = this.face, ex = f.eyes.reduce((s, e) => s + e.x, 0)/f.eyes.length;
+      let top = Infinity; for(const r of this.rest) if(Math.abs(r.x - ex) < f.w*0.18 && r.y < top) top = r.y;
+      if(top === Infinity) top = f.top;
+      return { x: ex, y: top, w: clamp(f.w*0.42, 26, 90) };
+    }
+    speak(text, ms){ this.say = { text, until: performance.now() + (ms || 1900) }; sfx.babble(text, this.size); $('said').textContent = `${this.name}: ${text}`; }
+    wake(){ const was = this.sleeping; this.sleeping = false; this.lastPoke = performance.now(); if(was) this.speak('Huh?! Oh, hi!', 1400); }
+  }
+  function freshName(){
+    const used = new Set(jellies.map(j => j.name));
+    const free = NAMES.filter(n => !used.has(n));
+    return (free.length ? free : NAMES)[Math.floor(Math.random()*(free.length || NAMES.length))];
+  }
+
+  function jellyFromStroke(raw){
+    const pts = chaikin(chaikin(raw, true), true);
+    const P = pathLen(pts, true), A = Math.abs(polyArea(pts)), q = 4*Math.PI*A/(P*P);
+    if(q < 0.06){
+      // a line, not a loop: give it thickness and it becomes a noodle
+      const open = resample(chaikin(raw, false), clamp(Math.round(pathLen(raw, false)/14), 4, 40), false);
+      const left = [], right = [];
+      open.forEach((p, i) => { const a = open[Math.max(0, i - 1)], b = open[Math.min(open.length - 1, i + 1)];
+        let nx = -(b.y - a.y), ny = b.x - a.x; const l = hyp(nx, ny) || 1; nx /= l; ny /= l;
+        left.push({ x: p.x + nx*13, y: p.y + ny*13 }); right.push({ x: p.x - nx*13, y: p.y - ny*13 }); });
+      const outline = [...left, ...right.reverse()];
+      return resample(outline, clamp(Math.round(pathLen(outline, true)/16), 12, 64), true);
+    }
+    return resample(pts, clamp(Math.round(P/16), 12, 56), true);
+  }
+  function addJelly(outline, color, extra){
+    if(jellies.length >= MAX_JELLIES) popJelly(jellies[0]);
+    const j = new Jelly(outline, color || colorFor(), extra);
+    jellies.push(j); updateCount(); dirty = true;
+    return j;
+  }
+  function popJelly(j){
+    const i = jellies.indexOf(j); if(i < 0) return;
+    jellies.splice(i, 1);
+    for(const [k, gr] of grabs) if(gr.j === j) grabs.delete(k);
+    for(const [k, pt] of paints) if(pt.j === j) paints.delete(k);
+    confetti(j.cx, j.cy, j.color, 26); sfx.pop(); updateCount(); dirty = true;
+  }
+  function updateCount(){ $('count').textContent = jellies.length === 1 ? '1 jelly' : `${jellies.length} jellies`; }
+  function introduce(j, delay){ setTimeout(() => { if(jellies.includes(j)){ j.met = true; j.speak(`Hi! I'm ${j.name}!`, 2200); } }, delay || 450); }
+
+  // premade shapes for "Drop a jelly" and the opening scene
+  function shapeStar(cx, cy, R){ const p = []; for(let i = 0; i < 10; i++){ const a = -Math.PI/2 + i*Math.PI/5, r = i%2 ? R*0.48 : R; p.push({ x: cx + Math.cos(a)*r, y: cy + Math.sin(a)*r }); } return resample(chaikin(p, true), 40, true); }
+  function shapeHeart(cx, cy, R){ const p = []; for(let i = 0; i < 48; i++){ const t = i/48*Math.PI*2; p.push({ x: cx + R*16*Math.pow(Math.sin(t), 3)/17, y: cy - R*(13*Math.cos(t) - 5*Math.cos(2*t) - 2*Math.cos(3*t) - Math.cos(4*t))/17 }); } return resample(p, 40, true); }
+  function shapeBlob(cx, cy, R){ const p = [], s = Math.random()*10; for(let i = 0; i < 36; i++){ const t = i/36*Math.PI*2; const r = R*(1 + 0.16*Math.sin(3*t + s) + 0.08*Math.sin(5*t + s*2)); p.push({ x: cx + Math.cos(t)*r*1.1, y: cy + Math.sin(t)*r*0.9 }); } return p; }
+  function shapeCloud(cx, cy, R){ const p = []; for(let i = 0; i < 48; i++){ const t = i/48*Math.PI*2; const r = R*(0.82 + 0.18*Math.abs(Math.sin(t*3))); p.push({ x: cx + Math.cos(t)*r*1.35, y: cy + Math.sin(t)*r*0.8 }); } return resample(p, 40, true); }
+  const SHAPES = [shapeStar, shapeHeart, shapeBlob, shapeCloud];
+  function dropJelly(x, quiet){
+    const R = clamp(Math.min(W, H)*0.1, 46, 96);
+    const f = SHAPES[Math.floor(Math.random()*SHAPES.length)];
+    const j = addJelly(f(x == null ? R + 70 + Math.random()*(W - 2*R - 70) : x, -R*1.4, R));
+    j.kick((Math.random() - .5)*1.2, 0, 0);
+    sfx.bloop(j.size);
+    if(!quiet) introduce(j, 900);
+    return j;
+  }
+
+  // ---------- physics ----------
+  const grabs = new Map(), paints = new Map(), contacts = new Map();
+  function step(dt){
+    const h = dt/SUB, G = GRAV[gmode].g, damp = gmode === 2 ? 0.9993 : 0.999;
+    for(let s = 0; s < SUB; s++){
+      for(const j of jellies) for(const q of j.p){
+        const vx = (q.x - q.px)*damp, vy = (q.y - q.py)*damp;
+        q.px = q.x; q.py = q.y; q.x += vx; q.y += vy + G*h*h;
+      }
+      for(const gr of grabs.values()) for(const e of gr.pts){
+        const q = gr.j.p[e.i]; q.x += (gr.tx + e.ox - q.x)*0.32*e.w; q.y += (gr.ty + e.oy - q.y)*0.32*e.w;
+      }
+      for(const j of jellies) j.held = false;
+      for(const gr of grabs.values()) gr.j.held = true;
+      for(const j of jellies){ shapeMatch(j); edges(j); }
+      for(const j of jellies) j.updateBB();
+      for(let a = 0; a < jellies.length; a++) for(let b = a + 1; b < jellies.length; b++){
+        const A = jellies[a], B = jellies[b];
+        if(A.bb.x1 < B.bb.x0 || B.bb.x1 < A.bb.x0 || A.bb.y1 < B.bb.y0 || B.bb.y1 < A.bb.y0) continue;
+        if(resolve(A, B) + resolve(B, A) > 0 && s === 0) touch(A, B);
+      }
+      for(const j of jellies) world(j, h);
+    }
+  }
+  function shapeMatch(j){
+    const p = j.p, n = j.n; let cx = 0, cy = 0;
+    for(const q of p){ cx += q.x; cy += q.y; } cx /= n; cy /= n;
+    let a = 0, c = 0;
+    for(let i = 0; i < n; i++){ const r = j.rest[i], qx = p[i].x - cx, qy = p[i].y - cy; a += r.x*qy - r.y*qx; c += r.x*qx + r.y*qy; }
+    const found = Math.atan2(a, c);
+    // weeble: unless someone is holding it, a jelly slowly rights itself so its face ends up upright
+    const ang = j.held ? found : found*(1 - (GRAV[gmode].g ? 0.018 : 0.006)), cs = Math.cos(ang), sn = Math.sin(ang);
+    j.cx = cx; j.cy = cy; j.ang = found;
+    for(let i = 0; i < n; i++){ const r = j.rest[i], q = p[i];
+      q.x += (cx + r.x*cs - r.y*sn - q.x)*SM_K; q.y += (cy + r.x*sn + r.y*cs - q.y)*SM_K; }
+  }
+  function edges(j){
+    const p = j.p, n = j.n;
+    for(let i = 0; i < n; i++){ const a = p[i], b = p[(i + 1)%n]; const dx = b.x - a.x, dy = b.y - a.y, d = hyp(dx, dy) || 1e-6;
+      const k = (d - j.edge[i])/d*0.25; a.x += dx*k; a.y += dy*k; b.x -= dx*k; b.y -= dy*k; }
+  }
+  function resolve(A, B){
+    const bp = B.p, n = bp.length; let hits = 0;
+    for(const q of A.p){
+      if(q.x < B.bb.x0 || q.x > B.bb.x1 || q.y < B.bb.y0 || q.y > B.bb.y1) continue;
+      if(!inPoly(q.x, q.y, bp)) continue;
+      let best = Infinity, bi = 0, bc = null;
+      for(let k = 0; k < n; k++){ const a = bp[k], c = bp[(k + 1)%n]; const r = closest(q.x, q.y, a.x, a.y, c.x, c.y);
+        const d = (q.x - r.x)**2 + (q.y - r.y)**2; if(d < best){ best = d; bi = k; bc = r; } }
+      const dx = bc.x - q.x, dy = bc.y - q.y;
+      q.x += dx*0.55; q.y += dy*0.55;
+      const a = bp[bi], c = bp[(bi + 1)%n], t = bc.t;
+      a.x -= dx*0.45*(1 - t); a.y -= dy*0.45*(1 - t); c.x -= dx*0.45*t; c.y -= dy*0.45*t;
+      hits++;
+    }
+    return hits;
+  }
+  // friends who rest against each other for a while share a heart
+  function touch(A, B){
+    const key = A.name < B.name ? A.name + '|' + B.name : B.name + '|' + A.name, t = performance.now();
+    const c = contacts.get(key) || { since: t, seen: t, last: 0 };
+    if(t - c.seen > 400) c.since = t;
+    c.seen = t;
+    if(t - c.since > 1800 && t - c.last > 7000 && A.speed < 60 && B.speed < 60 && !A.sleeping && !B.sleeping){
+      c.last = t; heart((A.cx + B.cx)/2, Math.min(A.bb.y0, B.bb.y0) - 6); sfx.aww();
+    }
+    contacts.set(key, c);
+  }
+  function world(j, h){
+    const R = 2, top = gmode === 2 ? 70 : -900; let impact = 0;
+    for(const q of j.p){
+      if(q.y > floorY - R){ const vy = q.y - q.py; q.y = floorY - R; if(vy > 0){ impact = Math.max(impact, vy/h); q.py = q.y + vy*0.25; } q.px = q.x - (q.x - q.px)*0.72; }
+      if(q.y < top){ const vy = q.y - q.py; q.y = top; if(vy < 0){ impact = Math.max(impact, -vy/h); q.py = q.y + vy*0.3; } }
+      if(q.x < R){ const vx = q.x - q.px; q.x = R; if(vx < 0){ impact = Math.max(impact, -vx/h); q.px = q.x + vx*0.3; } }
+      if(q.x > W - R){ const vx = q.x - q.px; q.x = W - R; if(vx > 0){ impact = Math.max(impact, vx/h); q.px = q.x + vx*0.3; } }
+      for(const w of walls){
+        if(q.x < w.bb.x0 || q.x > w.bb.x1 || q.y < w.bb.y0 || q.y > w.bb.y1) continue;
+        for(let k = 0; k < w.pts.length - 1; k++){
+          const a = w.pts[k], b = w.pts[k + 1]; const c = closest(q.x, q.y, a.x, a.y, b.x, b.y);
+          let nx = q.x - c.x, ny = q.y - c.y; const d = hyp(nx, ny);
+          if(d >= WALL_R + R) continue;
+          if(d < 1e-4){ nx = -(b.y - a.y); ny = b.x - a.x; const l = hyp(nx, ny) || 1; nx /= l; ny /= l; } else { nx /= d; ny /= d; }
+          const vx = q.x - q.px, vy = q.y - q.py, vn = vx*nx + vy*ny;
+          q.x = c.x + nx*(WALL_R + R); q.y = c.y + ny*(WALL_R + R);
+          if(vn < 0){ impact = Math.max(impact, -vn/h); const tx = vx - vn*nx, ty = vy - vn*ny;
+            q.px = q.x - (tx*0.9 - vn*0.25*nx); q.py = q.y - (ty*0.9 - vn*0.25*ny); }
+        }
+      }
+    }
+    const t = performance.now();
+    if(impact > 380 && t - j.lastBoing > 120){ j.lastBoing = t; sfx.boing(j.size, clamp(impact/2400, 0.07, 1)); }
+    if(impact > 900 && j.sleeping) j.wake();
+  }
+
+  // ---------- life: eyes, blinks, naps, hops, friends ----------
+  let look = null;
+  function alive(j, dt, t){
+    const vx = (j.cx - j.lcx)/dt, vy = (j.cy - j.lcy)/dt; j.lcx = j.cx; j.lcy = j.cy;
+    const ax = (vx - j.vx)/dt, ay = (vy - j.vy)/dt; j.vx = vx; j.vy = vy;
+    j.speed = j.speed*0.8 + hyp(vx, vy)*0.2;
+    let dAng = j.ang - j.lang; if(dAng > Math.PI) dAng -= 2*Math.PI; if(dAng < -Math.PI) dAng += 2*Math.PI; j.lang = j.ang;
+    j.tilt += (clamp(-dAng/dt*0.06, -0.5, 0.5) - j.tilt)*Math.min(1, dt*6);
+    const held = [...grabs.values()].some(x => x.j === j);
+
+    // nearest awake friend, for eye contact
+    let friend = null, fd = 420;
+    if(!look) for(const o of jellies){ if(o === j || o.sleeping) continue; const d = hyp(o.cx - j.cx, o.cy - j.cy); if(d < fd){ fd = d; friend = o; } }
+    j.face.eyes.forEach((e, k) => {
+      const P = j.pupils[k]; const [ex, ey] = j.toWorld(e.x, e.y); const lim = e.r*0.48;
+      let tx = 0, ty = GRAV[gmode].g ? lim*0.3 : 0;
+      const target = look || (friend ? { x: friend.cx, y: friend.cy } : null);
+      if(target){ const dx = target.x - ex, dy = target.y - ey, d = hyp(dx, dy) || 1; tx = dx/d*lim; ty = dy/d*lim; }
+      else tx += Math.sin(t*0.0007 + j.size)*lim*0.5;
+      P.vx += ((tx - P.x)*90 - P.vx*10 - clamp(ax, -4e4, 4e4)*0.012)*dt;
+      P.vy += ((ty - P.y)*90 - P.vy*10 - clamp(ay, -4e4, 4e4)*0.012)*dt;
+      P.x += P.vx*dt; P.y += P.vy*dt;
+      const m = hyp(P.x, P.y); if(m > lim){ P.x *= lim/m; P.y *= lim/m; P.vx *= -0.3; P.vy *= -0.3; }
+    });
+    if(t > j.blinkAt){ j.blinkUntil = t + 130; j.blinkAt = t + 1800 + Math.random()*4200; }
+
+    if(held){ j.lastPoke = t; j.sleeping = false; return; }
+    // naps: left alone long enough, a jelly dozes off
+    if(!j.sleeping && t - j.lastPoke > 32000 && j.speed < 25){ j.sleeping = true; j.nextZ = t; }
+    if(j.sleeping){
+      if(t > j.nextZ){ j.nextZ = t + 1100; particles.push({ kind: 'z', x: j.cx + j.face.w*0.25, y: j.bb.y0, vx: 12, vy: -34, life: 1.6, r: clamp(j.size*0.14, 12, 26), rot: 0 }); }
+      return;
+    }
+    // idle life: little hops and wiggles, never while someone is playing with it
+    if(!reduced && t > j.nextIdle){
+      j.nextIdle = t + rand(4500, 10000);
+      const grounded = GRAV[gmode].g === 0 || j.bb.y1 > floorY - 8;
+      if(grounded){
+        const r = Math.random();
+        if(r < 0.5){ const up = GRAV[gmode].g ? clamp(2 + j.size*0.012, 2.3, 3.2) : 0.6; j.kick(rand(-0.8, 0.8), up, 0.3); setTimeout(() => sfx.boing(j.size, 0.18), 30); }
+        else if(r < 0.8){ j.kick(0, 0, 1.5); }
+        else if(friend && Math.random() < 0.6){ j.speak(Math.random() < .5 ? `Hi ${friend.name}!` : 'Wanna play?', 1500); }
+      }
+    }
+  }
+
+  // ---------- drawing ----------
+  function blobPath(p){
+    const n = p.length;
+    g.beginPath(); g.moveTo((p[n - 1].x + p[0].x)/2, (p[n - 1].y + p[0].y)/2);
+    for(let i = 0; i < n; i++){ const a = p[i], c = p[(i + 1)%n]; g.quadraticCurveTo(a.x, a.y, (a.x + c.x)/2, (a.y + c.y)/2); }
+    g.closePath();
+  }
+  function drawJelly(j, t){
+    const bb = j.bb, w = bb.x1 - bb.x0, h = bb.y1 - bb.y0;
+    const air = floorY - bb.y1;
+    if(GRAV[gmode].g && air < 320){
+      const k = 1 - air/320;
+      g.fillStyle = `rgba(26,22,51,${0.16*k})`;
+      g.beginPath(); g.ellipse(j.cx, floorY + 4, w*0.42*(0.55 + 0.45*k), 6, 0, 0, Math.PI*2); g.fill();
+    }
+    blobPath(j.p);
+    g.fillStyle = j.color; g.fill();
+    g.save(); g.clip();
+    if(j.paint.length){
+      g.save(); g.translate(j.cx, j.cy); g.rotate(j.ang); g.lineCap = 'round'; g.lineJoin = 'round';
+      for(const s of j.paint){ if(s.pts.length < 1) continue; g.strokeStyle = s.c; g.lineWidth = s.w || 7;
+        g.beginPath(); g.moveTo(s.pts[0][0], s.pts[0][1]); if(s.pts.length === 1) g.lineTo(s.pts[0][0] + 0.1, s.pts[0][1]); for(const p of s.pts) g.lineTo(p[0], p[1]); g.stroke(); }
+      g.restore();
+    }
+    const gr = g.createLinearGradient(0, bb.y0, 0, bb.y1);
+    gr.addColorStop(0, 'rgba(255,255,255,0.18)'); gr.addColorStop(0.55, 'rgba(255,255,255,0)'); gr.addColorStop(1, j.dark.replace('rgb', 'rgba').replace(')', ',0.45)'));
+    g.fillStyle = gr; g.fillRect(bb.x0 - 4, bb.y0 - 4, w + 8, h + 8);
+    const [hx, hy] = j.toWorld(-j.face.w*0.2, -j.face.h*0.24);
+    g.fillStyle = 'rgba(255,255,255,0.55)';
+    g.beginPath(); g.ellipse(hx, hy, Math.max(4, j.face.w*0.13), Math.max(3, j.face.h*0.07), j.ang - 0.5, 0, Math.PI*2); g.fill();
+    g.restore();
+    blobPath(j.p);
+    g.lineWidth = 4; g.lineJoin = 'round'; g.strokeStyle = INK; g.stroke();
+
+    // face and hat, in the jelly's own frame
+    g.save(); g.translate(j.cx, j.cy); g.rotate(j.ang);
+    const c = Math.cos(-j.ang), s = Math.sin(-j.ang);
+    const grabbed = [...grabs.values()].some(x => x.j === j);
+    const closed = t < j.blinkUntil || j.sleeping;
+    const giggle = t < j.giggleUntil;
+    j.face.eyes.forEach((e, k) => {
+      const P = j.pupils[k]; const px = P.x*c - P.y*s, py = P.x*s + P.y*c;
+      g.beginPath(); g.arc(e.x, e.y, e.r, 0, Math.PI*2); g.fillStyle = '#fff'; g.fill();
+      g.lineWidth = Math.max(1.8, e.r*0.16); g.strokeStyle = INK; g.stroke();
+      if(closed || giggle){
+        g.beginPath(); g.arc(e.x, e.y, e.r + 1, 0, Math.PI*2); g.fillStyle = j.color; g.fill();
+        g.beginPath();
+        if(giggle) g.arc(e.x, e.y + e.r*0.35, e.r*0.6, Math.PI*1.15, Math.PI*1.85);
+        else if(j.sleeping) g.arc(e.x, e.y - e.r*0.25, e.r*0.6, Math.PI*0.15, Math.PI*0.85);
+        else { g.moveTo(e.x - e.r*0.75, e.y); g.lineTo(e.x + e.r*0.75, e.y); }
+        g.lineWidth = Math.max(2, e.r*0.2); g.lineCap = 'round'; g.stroke();
+      } else {
+        const pr = e.r*0.5;
+        g.beginPath(); g.arc(e.x + px, e.y + py, pr, 0, Math.PI*2); g.fillStyle = INK; g.fill();
+        g.beginPath(); g.arc(e.x + px - pr*0.35, e.y + py - pr*0.35, pr*0.32, 0, Math.PI*2); g.fillStyle = '#fff'; g.fill();
+      }
+    });
+    if(j.hat === 5) drawGlasses(j);
+    const m = j.face.mouth;
+    if(m){
+      g.lineWidth = Math.max(2.2, m.w*0.13); g.lineCap = 'round'; g.strokeStyle = INK;
+      if(j.sleeping){
+        g.beginPath(); g.ellipse(m.x, m.y + m.w*0.05, m.w*0.14, m.w*0.12*(1 + 0.3*Math.sin(t*0.004)), 0, 0, Math.PI*2); g.stroke();
+      } else if(grabbed || j.speed > 700 || giggle || (j.say && t < j.say.until)){
+        const talk = j.say && t < j.say.until && !grabbed ? 0.2 + 0.2*Math.abs(Math.sin(t*0.03)) : (giggle ? 0.28 : 0.42);
+        g.beginPath(); g.ellipse(m.x, m.y + m.w*0.1, m.w*0.32, m.w*talk, 0, 0, Math.PI*2); g.fillStyle = '#5A1030'; g.fill(); g.stroke();
+      } else {
+        g.beginPath(); g.arc(m.x, m.y - m.w*0.45, m.w*0.62, Math.PI*0.22, Math.PI*0.78); g.stroke();
+      }
+      g.fillStyle = 'rgba(255,90,140,0.35)';
+      g.beginPath(); g.ellipse(m.x - m.w*1.05, m.y - m.w*0.2, m.w*0.28, m.w*0.17, 0, 0, Math.PI*2); g.fill();
+      g.beginPath(); g.ellipse(m.x + m.w*1.05, m.y - m.w*0.2, m.w*0.28, m.w*0.17, 0, 0, Math.PI*2); g.fill();
+    }
+    if(j.hat >= 0 && j.hat < 5) drawHat(j);
+    g.restore();
+  }
+  function outlined(fill){ g.fillStyle = fill; g.fill(); g.lineWidth = 3; g.strokeStyle = INK; g.lineJoin = 'round'; g.stroke(); }
+  function drawHat(j){
+    const { x, y, w } = j.anchor;
+    g.save(); g.translate(x, y + 3); g.rotate(j.tilt);
+    switch(j.hat){
+      case 0: { // party hat
+        g.beginPath(); g.moveTo(-w*0.45, 0); g.lineTo(0, -w*1.05); g.lineTo(w*0.45, 0); g.closePath();
+        g.save(); g.clip(); g.fillStyle = '#3CCFE8'; g.fillRect(-w, -w*1.2, w*2, w*1.3);
+        g.fillStyle = '#FF5DA2'; for(let i = -2; i < 3; i++){ g.save(); g.translate(i*w*0.35, -w*0.5); g.rotate(-0.7); g.fillRect(-w, -w*0.06, w*2, w*0.12); g.restore(); }
+        g.restore();
+        g.beginPath(); g.moveTo(-w*0.45, 0); g.lineTo(0, -w*1.05); g.lineTo(w*0.45, 0); g.closePath(); g.lineWidth = 3; g.strokeStyle = INK; g.stroke();
+        g.beginPath(); g.arc(0, -w*1.05, w*0.13, 0, Math.PI*2); outlined('#FFD23F');
+        break; }
+      case 1: { // crown
+        const hh = w*0.55;
+        g.beginPath(); g.moveTo(-w*0.5, 0); g.lineTo(-w*0.5, -hh); g.lineTo(-w*0.25, -hh*0.5); g.lineTo(0, -hh*1.1); g.lineTo(w*0.25, -hh*0.5); g.lineTo(w*0.5, -hh); g.lineTo(w*0.5, 0); g.closePath();
+        outlined('#FFD23F');
+        for(const gx of [-0.5, 0, 0.5]){ g.beginPath(); g.arc(gx*w, gx === 0 ? -hh*1.1 : -hh, w*0.07, 0, Math.PI*2); outlined('#FF5A5A'); }
+        break; }
+      case 2: { // bow
+        g.translate(w*0.28, 2);
+        g.beginPath(); g.moveTo(0, 0); g.lineTo(-w*0.45, -w*0.3); g.lineTo(-w*0.45, w*0.3); g.closePath(); outlined('#FF5DA2');
+        g.beginPath(); g.moveTo(0, 0); g.lineTo(w*0.45, -w*0.3); g.lineTo(w*0.45, w*0.3); g.closePath(); outlined('#FF5DA2');
+        g.beginPath(); g.arc(0, 0, w*0.11, 0, Math.PI*2); outlined('#FF8FC0');
+        break; }
+      case 3: { // top hat
+        g.beginPath(); g.roundRect ? g.roundRect(-w*0.34, -w*0.9, w*0.68, w*0.82, 4) : g.rect(-w*0.34, -w*0.9, w*0.68, w*0.82); outlined('#2E2850');
+        g.fillStyle = '#FF5A5A'; g.fillRect(-w*0.34 + 1.5, -w*0.32, w*0.68 - 3, w*0.14);
+        g.beginPath(); g.ellipse(0, -w*0.06, w*0.62, w*0.1, 0, 0, Math.PI*2); outlined('#2E2850');
+        break; }
+      case 4: { // flower
+        g.translate(w*0.22, 0);
+        for(let i = 0; i < 5; i++){ const a = i/5*Math.PI*2; g.beginPath(); g.arc(Math.cos(a)*w*0.2, Math.sin(a)*w*0.2 - w*0.1, w*0.16, 0, Math.PI*2); outlined('#fff'); }
+        g.beginPath(); g.arc(0, -w*0.1, w*0.13, 0, Math.PI*2); outlined('#FFD23F');
+        break; }
+    }
+    g.restore();
+  }
+  function drawGlasses(j){
+    const eyes = j.face.eyes;
+    g.lineWidth = 3.5; g.strokeStyle = INK;
+    eyes.forEach(e => { g.beginPath(); g.arc(e.x, e.y, e.r*1.3, 0, Math.PI*2); g.fillStyle = 'rgba(150,215,255,0.22)'; g.fill(); g.stroke(); });
+    if(eyes.length === 2){ const [a, b] = eyes; g.beginPath(); g.moveTo(a.x + a.r*1.3, a.y); g.quadraticCurveTo((a.x + b.x)/2, a.y - a.r*0.5, b.x - b.r*1.3, b.y); g.stroke(); }
+    else { const e = eyes[0]; g.beginPath(); g.moveTo(e.x + e.r*1.3, e.y); g.quadraticCurveTo(e.x + e.r*2.2, e.y + e.r*2, e.x + e.r*1.6, e.y + e.r*3.2); g.lineWidth = 2; g.stroke(); }
+  }
+  let placed = [];
+  function drawBubble(j, t){
+    if(!j.say || t > j.say.until) return;
+    g.font = '600 18px Fredoka, Nunito, "Segoe UI", sans-serif';
+    const tw = g.measureText(j.say.text).width, bw = tw + 26, bh = 38;
+    const hatLift = j.hat >= 0 && j.hat < 5 ? j.anchor.w*0.9 : 0;
+    let x = clamp(j.cx - bw/2, 8, W - bw - 8), y = Math.max(8, j.bb.y0 - bh - 16 - hatLift);
+    for(let guard = 0; guard < 6; guard++){ const o = placed.find(r => x < r.x + r.w + 6 && r.x < x + bw + 6 && y < r.y + r.h + 6 && r.y < y + bh + 6); if(!o) break; y = o.y - bh - 10; }
+    placed.push({ x, y, w: bw, h: bh });
+    const tailX = clamp(j.cx, x + 16, x + bw - 16);
+    g.beginPath();
+    if(g.roundRect) g.roundRect(x, y, bw, bh, 14); else g.rect(x, y, bw, bh);
+    g.moveTo(tailX - 8, y + bh); g.lineTo(tailX, y + bh + 10); g.lineTo(tailX + 8, y + bh);
+    g.fillStyle = '#fff'; g.fill(); g.lineWidth = 3; g.strokeStyle = INK; g.stroke();
+    g.fillStyle = '#fff'; g.fillRect(tailX - 6, y + bh - 3, 12, 4);
+    g.fillStyle = INK; g.textBaseline = 'middle'; g.fillText(j.say.text, x + 13, y + bh/2 + 1);
+  }
+  function drawWall(pts, alpha){
+    if(pts.length < 2) return;
+    g.globalAlpha = alpha; g.lineCap = 'round'; g.lineJoin = 'round';
+    g.beginPath(); g.moveTo(pts[0].x, pts[0].y); for(let i = 1; i < pts.length; i++) g.lineTo(pts[i].x, pts[i].y);
+    g.strokeStyle = INK; g.lineWidth = WALL_R*2; g.stroke();
+    g.strokeStyle = 'rgba(255,255,255,0.22)'; g.lineWidth = 3; g.stroke();
+    g.globalAlpha = 1;
+  }
+  function drawFloor(){
+    g.strokeStyle = INK; g.lineWidth = 4; g.lineCap = 'round';
+    g.beginPath(); g.moveTo(10, floorY + 2); g.lineTo(W - 10, floorY + 2); g.stroke();
+    g.lineWidth = 2; g.globalAlpha = 0.35;
+    for(let x = 22; x < W - 10; x += 22){ g.beginPath(); g.moveTo(x, floorY + 6); g.lineTo(x - 9, floorY + 17); g.stroke(); }
+    g.globalAlpha = 1;
+  }
+  function confetti(x, y, color, n){
+    for(let i = 0; i < n; i++){ const a = Math.random()*Math.PI*2, v = 150 + Math.random()*420;
+      particles.push({ kind: 'bit', x, y, vx: Math.cos(a)*v, vy: Math.sin(a)*v - 250, life: 1, color: Math.random() < .3 ? INK : color, r: 3 + Math.random()*5, rot: Math.random()*6 }); }
+  }
+  function heart(x, y){ particles.push({ kind: 'heart', x, y, vx: 0, vy: -45, life: 1.8, r: 16, rot: 0 }); }
+  function drawParticle(p){
+    g.save(); g.translate(p.x, p.y); g.globalAlpha = clamp(p.life, 0, 1);
+    if(p.kind === 'z'){ g.font = `700 ${p.r}px Fredoka, sans-serif`; g.fillStyle = INK; g.textBaseline = 'middle'; g.fillText('z', 0, 0); }
+    else if(p.kind === 'heart'){ const r = p.r*(1.2 - p.life*0.2);
+      g.beginPath(); g.moveTo(0, r*0.35); g.bezierCurveTo(-r*1.1, -r*0.4, -r*0.45, -r*1.1, 0, -r*0.45); g.bezierCurveTo(r*0.45, -r*1.1, r*1.1, -r*0.4, 0, r*0.35);
+      outlined('#FF5A7E'); }
+    else { g.rotate(p.rot); g.fillStyle = p.color; g.fillRect(-p.r, -p.r*0.5, p.r*2, p.r); }
+    g.restore();
+  }
+
+  // ---------- sound: boings, squishes, pops, and jelly-speak ----------
+  let AC = null, master = null, soundOn = true;
+  function audio(){
+    if(!AC){ const C = window.AudioContext || window.webkitAudioContext; if(!C) return null;
+      AC = new C(); master = AC.createGain(); master.gain.value = soundOn ? 0.8 : 0;
+      const comp = AC.createDynamicsCompressor(); master.connect(comp); comp.connect(AC.destination); }
+    if(AC.state === 'suspended') AC.resume();
+    return AC;
+  }
+  const live = () => AC && soundOn && AC.state === 'running';
+  function tone(type, f0, f1, dur, vol, when){
+    const t = AC.currentTime + (when || 0), o = AC.createOscillator(), gn = AC.createGain();
+    o.type = type; o.frequency.setValueAtTime(f0, t); o.frequency.exponentialRampToValueAtTime(Math.max(20, f1), t + dur*0.8);
+    gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(vol, t + 0.008); gn.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(gn); gn.connect(master); o.start(t); o.stop(t + dur + 0.05); return o;
+  }
+  function noise(dur, freq, vol, when){
+    const t = AC.currentTime + (when || 0), len = Math.floor(AC.sampleRate*dur), b = AC.createBuffer(1, len, AC.sampleRate), d = b.getChannelData(0);
+    for(let i = 0; i < len; i++) d[i] = (Math.random()*2 - 1)*(1 - i/len);
+    const s = AC.createBufferSource(); s.buffer = b; const f = AC.createBiquadFilter(); f.type = 'bandpass'; f.frequency.value = freq; f.Q.value = 1.2;
+    const gn = AC.createGain(); gn.gain.value = vol; s.connect(f); f.connect(gn); gn.connect(master); s.start(t);
+  }
+  const sfx = {
+    boing(size, amt){ if(!live()) return; const f = clamp(26000/size, 130, 720);
+      const o = tone('sine', f*1.7, f, 0.42, 0.32*amt);
+      const l = AC.createOscillator(), lg = AC.createGain(); l.frequency.value = 16; lg.gain.setValueAtTime(f*0.12, AC.currentTime); lg.gain.exponentialRampToValueAtTime(1, AC.currentTime + 0.4);
+      l.connect(lg); lg.connect(o.frequency); l.start(); l.stop(AC.currentTime + 0.45); },
+    squish(){ if(!live()) return; noise(0.14, 700, 0.35); tone('sine', 240, 110, 0.18, 0.18); },
+    bloop(size){ if(!live()) return; const f = clamp(20000/size, 180, 600); tone('sine', f, f*2.2, 0.22, 0.25); },
+    pop(){ if(!live()) return; noise(0.07, 2600, 0.5); tone('triangle', 900, 1700, 0.09, 0.2); },
+    giggle(size){ if(!live()) return; const f = clamp(30000/size, 260, 900); for(let i = 0; i < 4; i++) tone('sine', f*(1.25 - i*0.05), f*(1.05 - i*0.05), 0.11, 0.18, i*0.1); },
+    whoosh(){ if(!live()) return; noise(0.35, 500, 0.25); },
+    tada(){ if(!live()) return; [0, 4, 7, 12].forEach((s, i) => tone('triangle', 520*Math.pow(2, s/12), 520*Math.pow(2, s/12), 0.22, 0.14, i*0.07)); },
+    aww(){ if(!live()) return; tone('sine', 700, 520, 0.5, 0.14); tone('sine', 880, 660, 0.5, 0.08, 0.05); },
+    dab(){ if(!live()) return; noise(0.05, 1800, 0.12); },
+    // gibberish voice: short formant blips, pitched by jelly size
+    babble(text, size){ if(!live()) return;
+      const n = clamp(Math.round(text.length/3), 2, 9), base = clamp(34000/size, 220, 900);
+      for(let i = 0; i < n; i++){
+        const t = AC.currentTime + i*0.078, o = AC.createOscillator(), f = AC.createBiquadFilter(), gn = AC.createGain();
+        o.type = 'square'; o.frequency.setValueAtTime(base*rand(0.85, 1.25), t); o.frequency.exponentialRampToValueAtTime(base*rand(0.8, 1.1), t + 0.06);
+        f.type = 'bandpass'; f.frequency.value = [700, 1100, 1500, 1900][Math.floor(Math.random()*4)]; f.Q.value = 3.5;
+        gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(0.22, t + 0.01); gn.gain.exponentialRampToValueAtTime(0.0001, t + 0.07);
+        o.connect(f); f.connect(gn); gn.connect(master); o.start(t); o.stop(t + 0.08);
+      } },
+  };
+
+  // ---------- input ----------
+  const strokes = new Map();
+  let hinted = false;
+  const hideHint = () => { if(!hinted){ hinted = true; $('hint').classList.add('gone'); } };
+  function hit(x, y){ for(let i = jellies.length - 1; i >= 0; i--){ const j = jellies[i]; if(x >= j.bb.x0 && x <= j.bb.x1 && y >= j.bb.y0 && y <= j.bb.y1 && inPoly(x, y, j.p)) return j; } return null; }
+  const TICKLES = ['Hee hee!', 'That tickles!', 'Again! Again!', 'Boing!', 'Wheee!', 'Hehehe!', 'I like you!'];
+  cv.addEventListener('pointerdown', e => {
+    e.preventDefault(); try { cv.setPointerCapture(e.pointerId); } catch(err){} audio(); hideHint();
+    const x = e.clientX, y = e.clientY;
+    look = { x, y };
+    const j = hit(x, y);
+    if(j && mode === 'dress'){
+      const [lx, ly] = j.toLocal(x, y);
+      const stroke = { c: pick >= 0 ? PALETTE[pick] : PALETTE[colorIdx % PALETTE.length], w: 7, pts: [[lx, ly]] };
+      paints.set(e.pointerId, { j, stroke, sx: x, sy: y, moved: false, added: false });
+      return;
+    }
+    if(j){
+      const R = Math.max(30, j.size*0.55), pts = [];
+      j.p.forEach((q, i) => { const d = hyp(q.x - x, q.y - y); if(d < R) pts.push({ i, w: 1 - d/R*0.8, ox: q.x - x, oy: q.y - y }); });
+      if(!pts.length){ let bi = 0, bd = Infinity; j.p.forEach((q, i) => { const d = hyp(q.x - x, q.y - y); if(d < bd){ bd = d; bi = i; } }); pts.push({ i: bi, w: 1, ox: j.p[bi].x - x, oy: j.p[bi].y - y }); }
+      grabs.set(e.pointerId, { j, pts, tx: x, ty: y, sx: x, sy: y, t0: performance.now() });
+      j.wake(); sfx.squish();
+    } else if(mode !== 'dress'){
+      strokes.set(e.pointerId, { pts: [{ x, y }], mode, color: pick >= 0 ? PALETTE[pick] : PALETTE[colorIdx % PALETTE.length] });
+    } else {
+      flashTip();
+    }
+  });
+  cv.addEventListener('pointermove', e => {
+    const x = e.clientX, y = e.clientY;
+    if(e.buttons || e.pointerType === 'touch') look = { x, y };
+    const gr = grabs.get(e.pointerId); if(gr){ gr.tx = x; gr.ty = y; return; }
+    const pt = paints.get(e.pointerId);
+    if(pt){
+      if(!pt.moved && hyp(x - pt.sx, y - pt.sy) > 7){ pt.moved = true; if(!pt.added){ pt.j.paint.push(pt.stroke); pt.added = true; if(pt.j.paint.length > 40) pt.j.paint.shift(); } }
+      if(pt.moved){ const [lx, ly] = pt.j.toLocal(x, y); const l = pt.stroke.pts[pt.stroke.pts.length - 1]; if(hyp(lx - l[0], ly - l[1]) > 3){ pt.stroke.pts.push([Math.round(lx*10)/10, Math.round(ly*10)/10]); if(pt.stroke.pts.length % 6 === 0) sfx.dab(); } }
+      return;
+    }
+    const st = strokes.get(e.pointerId);
+    if(st){ const l = st.pts[st.pts.length - 1]; if(hyp(x - l.x, y - l.y) > 4) st.pts.push({ x, y }); }
+  });
+  function lift(e){
+    const gr = grabs.get(e.pointerId);
+    if(gr){
+      grabs.delete(e.pointerId);
+      if(hyp(gr.tx - gr.sx, gr.ty - gr.sy) < 10 && performance.now() - gr.t0 < 300){
+        const j = gr.j;
+        j.kick((Math.random() - .5)*1.2, 3.4, 1.2); j.giggleUntil = performance.now() + 700; sfx.giggle(j.size);
+        setTimeout(() => { if(!j.met){ j.met = true; j.speak(`Hi! I'm ${j.name}!`, 2200); } else j.speak(TICKLES[Math.floor(Math.random()*TICKLES.length)], 1500); }, 250);
+      }
+    }
+    const pt = paints.get(e.pointerId);
+    if(pt){
+      paints.delete(e.pointerId);
+      const j = pt.j; j.wake();
+      if(!pt.moved){
+        j.hat = j.hat + 1 >= HATS.length ? -1 : j.hat + 1;
+        sfx.tada(); confetti(j.cx, j.bb.y0, '#FFD23F', 8);
+        j.speak(j.hat < 0 ? 'Hats off!' : `I love my ${HATS[j.hat]}!`, 1600);
+      } else if(pick < 0) colorIdx++;
+      dirty = true;
+    }
+    const st = strokes.get(e.pointerId);
+    if(st){
+      strokes.delete(e.pointerId);
+      const L = pathLen(st.pts, false);
+      if(st.mode === 'wall'){
+        if(L > 24){ const pts = resample(st.pts, clamp(Math.round(L/10), 2, 200), false);
+          walls.push({ pts, bb: wallBB(pts) }); sfx.whoosh(); setMode('jelly', true); dirty = true; }
+      } else if(L < 40 || st.pts.length < 5){
+        // a tap on empty paper: a little shockwave that also wakes nappers
+        const tx = st.pts[0].x, ty = st.pts[0].y;
+        for(const j of jellies){ const dx = j.cx - tx, dy = j.cy - ty, d = hyp(dx, dy); if(d < 220){ const k = (1 - d/220)*3; j.kick(dx/(d || 1)*k, -dy/(d || 1)*k, 0.5); j.wake(); } }
+        confetti(tx, ty, st.color, 6); if(live()) tone('sine', 520, 780, 0.12, 0.12);
+      } else {
+        const j = addJelly(jellyFromStroke(st.pts), colorFor());
+        confetti(j.cx, j.cy, j.color, 10); sfx.bloop(j.size); introduce(j, 500);
+      }
+    }
+    if(!grabs.size && !strokes.size && !paints.size) look = null;
+  }
+  cv.addEventListener('pointerup', lift); cv.addEventListener('pointercancel', lift);
+  addEventListener('keydown', e => { if((e.key === 'j' || e.key === 'J') && !e.ctrlKey && !e.metaKey){ audio(); hideHint(); dropJelly(); } });
+  function wallBB(pts){ const bb = { x0: Infinity, y0: Infinity, x1: -Infinity, y1: -Infinity };
+    pts.forEach(p => { bb.x0 = Math.min(bb.x0, p.x - 12); bb.y0 = Math.min(bb.y0, p.y - 12); bb.x1 = Math.max(bb.x1, p.x + 12); bb.y1 = Math.max(bb.y1, p.y + 12); });
+    return bb; }
+
+  // ---------- controls ----------
+  const TIPS = { wall: 'Wall: draw one slide or ramp', dress: 'Dress up: tap for a hat, draw to paint' };
+  function setMode(m, quiet){
+    mode = m;
+    if(!quiet){ audio(); if(m === 'wall') sfx.whoosh(); else if(m === 'dress') sfx.tada(); else sfx.bloop(60); }
+    $('modeJelly').setAttribute('aria-pressed', String(m === 'jelly'));
+    $('modeWall').setAttribute('aria-pressed', String(m === 'wall'));
+    $('modeDress').setAttribute('aria-pressed', String(m === 'dress'));
+    const tip = $('tip'); tip.hidden = !TIPS[m]; tip.textContent = TIPS[m] || '';
+  }
+  function flashTip(){ const tip = $('tip'); tip.animate([{ transform: 'translateX(-50%) scale(1)' }, { transform: 'translateX(-50%) scale(1.12)' }, { transform: 'translateX(-50%) scale(1)' }], { duration: 320 }); if(live()) tone('sine', 400, 300, 0.15, 0.1); }
+  $('modeJelly').addEventListener('click', () => setMode('jelly'));
+  $('modeWall').addEventListener('click', () => setMode('wall'));
+  $('modeDress').addEventListener('click', () => { setMode('dress'); hideHint(); });
+  $('drop').addEventListener('click', () => { audio(); hideHint(); dropJelly(); });
+  $('grav').addEventListener('click', () => {
+    audio(); gmode = (gmode + 1) % GRAV.length; $('gravName').textContent = GRAV[gmode].name;
+    if(gmode === 2) jellies.forEach(j => j.kick((Math.random() - .5)*2, 1 + Math.random(), 0.5));
+    sfx.whoosh(); dirty = true;
+  });
+  $('shake').addEventListener('click', () => {
+    audio(); if(!jellies.length){ sfx.whoosh(); return; }
+    jellies.forEach((j, i) => { j.wake(); j.kick((Math.random() - .5)*6, 3 + Math.random()*3, 3); setTimeout(() => sfx.boing(j.size, 0.5), i*40); });
+  });
+  // Pop all asks twice, because the zoo is saved
+  let armedUntil = 0;
+  $('clear').addEventListener('click', () => {
+    audio();
+    if(!jellies.length && !walls.length){ sfx.whoosh(); return; }
+    const t = performance.now();
+    if(t > armedUntil){
+      armedUntil = t + 3000; $('clear').classList.add('armed'); $('clearLabel').textContent = 'Tap again to pop all';
+      if(live()) tone('square', 330, 330, 0.12, 0.06);
+      setTimeout(() => { if(performance.now() >= armedUntil){ $('clear').classList.remove('armed'); $('clearLabel').textContent = 'Pop all'; } }, 3050);
+      return;
+    }
+    armedUntil = 0; $('clear').classList.remove('armed'); $('clearLabel').textContent = 'Pop all';
+    jellies.slice().forEach((j, i) => setTimeout(() => popJelly(j), i*70));
+    walls.length = 0; dirty = true;
+  });
+  $('sound').addEventListener('click', () => {
+    soundOn = !soundOn; const a = audio();
+    if(a) master.gain.setTargetAtTime(soundOn ? 0.8 : 0, a.currentTime, 0.05);
+    $('soundLabel').textContent = soundOn ? 'Sound on' : 'Sound off';
+    $('waves').setAttribute('opacity', soundOn ? '1' : '0');
+  });
+
+  // color rail: rainbow plus the seven jelly colors
+  const rail = $('rail');
+  function buildRail(){
+    const mk = (i) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'sw' + (i < 0 ? ' rainbow' : '');
+      if(i >= 0) b.style.setProperty('--c', PALETTE[i]);
+      b.setAttribute('aria-label', i < 0 ? 'Rainbow: a new color each time' : COLOR_NAMES[i]);
+      b.setAttribute('aria-pressed', String(i === pick));
+      b.addEventListener('click', () => { pick = i; rail.querySelectorAll('.sw').forEach((s, k) => s.setAttribute('aria-pressed', String(k - 1 === pick))); audio(); if(live()) tone('sine', 600 + (i + 1)*60, 700 + (i + 1)*60, 0.1, 0.12); });
+      rail.appendChild(b); };
+    mk(-1); PALETTE.forEach((_, i) => mk(i));
+  }
+  buildRail();
+
+  // ---------- the zoo is saved on this device ----------
+  let dirty = false, lastSave = 0;
+  function save(){
+    dirty = false;
+    if(!started) return;
+    try {
+      const data = { v: 1, gmode, jellies: jellies.map(j => ({ rest: j.rest.map(r => [Math.round(r.x), Math.round(r.y)]), cx: Math.round(j.cx), cy: Math.round(j.cy),
+        color: j.color, name: j.name, hat: j.hat, paint: j.paint })), walls: walls.map(w => w.pts.map(p => [Math.round(p.x), Math.round(p.y)])) };
+      localStorage.setItem(SAVE_KEY, JSON.stringify(data));
+    } catch(e){}
+  }
+  function load(){
+    let data = null;
+    try { data = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null'); } catch(e){ return false; }
+    if(!data || !Array.isArray(data.jellies) || !data.jellies.length) return false;
+    gmode = GRAV[data.gmode] ? data.gmode : 0; $('gravName').textContent = GRAV[gmode].name;
+    (data.walls || []).forEach(w => { const pts = w.map(p => ({ x: p[0], y: p[1] })); if(pts.length > 1) walls.push({ pts, bb: wallBB(pts) }); });
+    data.jellies.slice(0, MAX_JELLIES).forEach(s => {
+      const cx = clamp(s.cx, 60, W - 60), cy = Math.min(s.cy, floorY - 60);
+      const j = addJelly(s.rest.map(r => ({ x: r[0] + cx, y: r[1] + cy })), s.color, { name: s.name, hat: s.hat, paint: s.paint });
+      j.met = true;
+    });
+    dirty = false;
+    return true;
+  }
+  addEventListener('pagehide', save);
+  document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'hidden') save(); });
+
+  // ---------- loop ----------
+  function resize(){
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    floorY = Math.min(H - 20, $('bar').getBoundingClientRect().top - 18);
+  }
+  addEventListener('resize', resize);
+  resize(); updateCount();
+
+  // start once the page has a real size (a tab opened in the background can report 0×0)
+  let started = false;
+  function start(){
+    if(started || W < 200 || H < 200) return;
+    started = true;
+    if(load()){
+      hideHint();
+      setTimeout(() => { const j = jellies[jellies.length - 1]; if(j) j.speak('We missed you!', 2400); }, 700);
+    } else {
+      [0.3, 0.55, 0.8].forEach((fx, i) => setTimeout(() => { const j = dropJelly(W*fx, true); if(i === 1) introduce(j, 1300); }, 150 + i*380));
+    }
+  }
+  addEventListener('resize', start);
+  start();
+
+  let last = performance.now();
+  function frame(t){
+    const dt = Math.min((t - last)/1000, 1/30); last = t;
+    if(dt > 0 && W >= 200){
+      step(dt);
+      for(const j of jellies) alive(j, dt, t);
+    }
+    for(let i = particles.length - 1; i >= 0; i--){ const p = particles[i];
+      if(p.kind === 'bit') p.vy += 900*dt; else { p.vx *= 0.98; p.x += Math.sin(t*0.004 + i)*0.3; }
+      p.x += p.vx*dt; p.y += p.vy*dt; p.rot += dt*8; p.life -= dt*(p.kind === 'bit' ? 1.2 : 0.7); if(p.life <= 0) particles.splice(i, 1); }
+    if(dirty && t - lastSave > 1500){ lastSave = t; save(); }
+
+    g.clearRect(0, 0, W, H);
+    drawFloor();
+    for(const w of walls) drawWall(w.pts, 1);
+    for(const j of jellies) drawJelly(j, t);
+    for(const st of strokes.values()){
+      if(st.mode === 'wall') drawWall(st.pts, 0.6);
+      else if(st.pts.length > 1){
+        g.lineCap = 'round'; g.lineJoin = 'round';
+        g.beginPath(); g.moveTo(st.pts[0].x, st.pts[0].y); for(const p of st.pts) g.lineTo(p.x, p.y);
+        g.strokeStyle = INK; g.lineWidth = 9; g.stroke(); g.strokeStyle = st.color; g.lineWidth = 4.5; g.stroke();
+      }
+    }
+    for(const p of particles) drawParticle(p);
+    placed = [];
+    for(const j of jellies) drawBubble(j, t);
+    g.globalAlpha = 1;
+    requestAnimationFrame(frame);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>

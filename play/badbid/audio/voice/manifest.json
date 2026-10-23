@@ -1,0 +1,1996 @@
+{
+ "hattie.bid.3": {
+  "h": "b96e858060d1",
+  "text": "Baby, I got three."
+ },
+ "unc.bid.0": {
+  "h": "a22d464748d8",
+  "text": "Unc got nothing. I’m just here for the food."
+ },
+ "deacon-pratt.gloat": {
+  "h": "6f789956f5a9",
+  "text": "Mm-mm-mm. Y’all should’ve prayed on that one."
+ },
+ "hattie.bid.2": {
+  "h": "df8e399de040",
+  "text": "Baby, I got two."
+ },
+ "hattie.bid.1": {
+  "h": "e26716850369",
+  "text": "Baby, I got one."
+ },
+ "hattie.bid.0": {
+  "h": "f0946b4e6f2a",
+  "text": "Baby, I got nothing. Grandma might go nil."
+ },
+ "hattie.bid.5": {
+  "h": "8e4952ca3a7c",
+  "text": "Baby, I got five."
+ },
+ "hattie.bid.4": {
+  "h": "bb3c03eebdc8",
+  "text": "Baby, I got four."
+ },
+ "hattie.bid.6": {
+  "h": "5886de6be066",
+  "text": "Baby, I got six."
+ },
+ "hattie.bid.7": {
+  "h": "b426466145de",
+  "text": "Baby, I got seven."
+ },
+ "hattie.bid.8": {
+  "h": "065e7a4a3e5d",
+  "text": "Baby, I got eight."
+ },
+ "hattie.possible.1": {
+  "h": "329d2c0216bc",
+  "text": "I got one, baby. Maybe two if they act up."
+ },
+ "hattie.possible.2": {
+  "h": "ed58a4e4dcca",
+  "text": "I got two, baby. Maybe three if they act up."
+ },
+ "hattie.possible.3": {
+  "h": "a36ddb7a761d",
+  "text": "I got three, baby. Maybe four if they act up."
+ },
+ "hattie.possible.4": {
+  "h": "1ca37f153450",
+  "text": "I got four, baby. Maybe five if they act up."
+ },
+ "hattie.possible.5": {
+  "h": "7963226fa8eb",
+  "text": "I got five, baby. Maybe six if they act up."
+ },
+ "hattie.possible.6": {
+  "h": "7b2c8e2e7a78",
+  "text": "I got six, baby. Maybe seven if they act up."
+ },
+ "hattie.made.0": {
+  "h": "dad42fdede9b",
+  "text": "That’s how we do it, baby."
+ },
+ "hattie.made.1": {
+  "h": "ea364cde70b9",
+  "text": "Mm-hm. Told you."
+ },
+ "hattie.set.0": {
+  "h": "72326729824f",
+  "text": "Lord. We’ll get it back."
+ },
+ "hattie.set.1": {
+  "h": "3dd718886a47",
+  "text": "Baby, that one’s on both of us."
+ },
+ "hattie.bigJoker": {
+  "h": "85f07f6fce97",
+  "text": "There go the Big Joker!"
+ },
+ "hattie.boston": {
+  "h": "536561d3c049",
+  "text": "All thirteen! Somebody fix me a plate!"
+ },
+ "hattie.runWon": {
+  "h": "d2ae755b9b28",
+  "text": "Now go call your mama and tell her."
+ },
+ "dre.bid.1": {
+  "h": "687e4b36d19e",
+  "text": "I got one."
+ },
+ "dre.bid.0": {
+  "h": "c698b16b3c1a",
+  "text": "I got nothing, cuz. I might slide nil."
+ },
+ "hattie.runLost": {
+  "h": "cf8a5d8aaafd",
+  "text": "Hold your head up, baby. We’ll run it back."
+ },
+ "dre.bid.2": {
+  "h": "f0c52b136566",
+  "text": "I got two."
+ },
+ "dre.bid.3": {
+  "h": "48f438531934",
+  "text": "I got three."
+ },
+ "dre.bid.4": {
+  "h": "a6abb72bfda6",
+  "text": "I got four."
+ },
+ "dre.bid.5": {
+  "h": "6a60b14acf37",
+  "text": "I got five."
+ },
+ "dre.bid.7": {
+  "h": "2eed615965db",
+  "text": "I got seven."
+ },
+ "dre.bid.8": {
+  "h": "eeb0b6d1b462",
+  "text": "I got eight."
+ },
+ "dre.bid.6": {
+  "h": "42681613ff4b",
+  "text": "I got six."
+ },
+ "dre.possible.1": {
+  "h": "66d4963f488d",
+  "text": "One, maybe two. Don’t tell nobody."
+ },
+ "dre.possible.2": {
+  "h": "c1ef0241cc2e",
+  "text": "Two, maybe three. Don’t tell nobody."
+ },
+ "dre.possible.3": {
+  "h": "f5f6bfaf2711",
+  "text": "Three, maybe four. Don’t tell nobody."
+ },
+ "dre.possible.4": {
+  "h": "99aabfc822c1",
+  "text": "Four, maybe five. Don’t tell nobody."
+ },
+ "dre.possible.5": {
+  "h": "bf308c9b66a1",
+  "text": "Five, maybe six. Don’t tell nobody."
+ },
+ "dre.made.0": {
+  "h": "722c65119c90",
+  "text": "Easy money."
+ },
+ "dre.possible.6": {
+  "h": "e412c4bc3032",
+  "text": "Six, maybe seven. Don’t tell nobody."
+ },
+ "dre.made.1": {
+  "h": "4af3bb559d8e",
+  "text": "Told you. Slick hands."
+ },
+ "dre.set.0": {
+  "h": "64f5bc754255",
+  "text": "Man… we ain’t talking about that."
+ },
+ "dre.set.1": {
+  "h": "705fe0aa2ff2",
+  "text": "That’s on me, cuz. Run it back."
+ },
+ "dre.bigJoker": {
+  "h": "ded1752c5de7",
+  "text": "Big Joker! Sit down!"
+ },
+ "dre.boston": {
+  "h": "4c311140270d",
+  "text": "Thirteen! Put that on the fridge!"
+ },
+ "dre.runWon": {
+  "h": "a096dedf86d8",
+  "text": "All eight. Say less."
+ },
+ "dre.runLost": {
+  "h": "2f9c661a9e64",
+  "text": "They got lucky. Rack ’em."
+ },
+ "tay.bid.0": {
+  "h": "7da04f1e639d",
+  "text": "Nothing! Who dealt this?!"
+ },
+ "tay.bid.1": {
+  "h": "31576bab09c6",
+  "text": "I got one. Don’t play with me."
+ },
+ "tay.bid.2": {
+  "h": "2cd2a7190fe3",
+  "text": "I got two. Don’t play with me."
+ },
+ "tay.bid.3": {
+  "h": "79e9d8722bce",
+  "text": "I got three. Don’t play with me."
+ },
+ "tay.bid.4": {
+  "h": "9a65210bd9df",
+  "text": "I got four. Don’t play with me."
+ },
+ "tay.bid.5": {
+  "h": "56a1a618ff3c",
+  "text": "I got five. Don’t play with me."
+ },
+ "tay.bid.6": {
+  "h": "606d4272e007",
+  "text": "I got six. Don’t play with me."
+ },
+ "tay.bid.7": {
+  "h": "ec31aeabd624",
+  "text": "I got seven. Don’t play with me."
+ },
+ "tay.bid.8": {
+  "h": "546075cadedf",
+  "text": "I got eight. Don’t play with me."
+ },
+ "tay.possible.1": {
+  "h": "22db94f52ebb",
+  "text": "One. Maybe two if they sleep."
+ },
+ "tay.possible.2": {
+  "h": "91843a20f4bb",
+  "text": "Two. Maybe three if they sleep."
+ },
+ "tay.possible.3": {
+  "h": "789233dce9e0",
+  "text": "Three. Maybe four if they sleep."
+ },
+ "tay.possible.4": {
+  "h": "9ce9392b1d45",
+  "text": "Four. Maybe five if they sleep."
+ },
+ "tay.possible.5": {
+  "h": "792d14934a21",
+  "text": "Five. Maybe six if they sleep."
+ },
+ "tay.possible.6": {
+  "h": "eb1168e9e525",
+  "text": "Six. Maybe seven if they sleep."
+ },
+ "tay.made.0": {
+  "h": "4b3839af370f",
+  "text": "That’s what I’m talking about!"
+ },
+ "tay.made.1": {
+  "h": "884e1f1b0ba8",
+  "text": "Made it! Next!"
+ },
+ "tay.set.0": {
+  "h": "7f5759ca11c6",
+  "text": "Nah. Nah. That was rigged."
+ },
+ "tay.set.1": {
+  "h": "99d783d56f8d",
+  "text": "Ugh! My fault. My fault."
+ },
+ "tay.bigJoker": {
+  "h": "02dcaceaddda",
+  "text": "Big Joker! Slap it!"
+ },
+ "tay.boston": {
+  "h": "54fe99b4ba8d",
+  "text": "All thirteen! Somebody film this!"
+ },
+ "tay.runLost": {
+  "h": "0915d8265091",
+  "text": "Rematch. Right now."
+ },
+ "tay.runWon": {
+  "h": "67507966e3de",
+  "text": "We ran all eight! Screenshot it!"
+ },
+ "big-mama.bid.1": {
+  "h": "6c671658c1e7",
+  "text": "Big Mama got one."
+ },
+ "big-mama.bid.0": {
+  "h": "4b89a54a56e0",
+  "text": "Chile, I got nothing. Big Mama might go nil."
+ },
+ "big-mama.bid.2": {
+  "h": "eb5ee8d3d606",
+  "text": "Big Mama got two."
+ },
+ "big-mama.bid.3": {
+  "h": "f30ec5380c07",
+  "text": "Big Mama got three."
+ },
+ "big-mama.bid.4": {
+  "h": "8b9c241d4307",
+  "text": "Big Mama got four."
+ },
+ "big-mama.bid.5": {
+  "h": "632b32c15436",
+  "text": "Big Mama got five."
+ },
+ "big-mama.bid.6": {
+  "h": "6a96259dc7bd",
+  "text": "Big Mama got six."
+ },
+ "big-mama.bid.7": {
+  "h": "3377bf2c815d",
+  "text": "Big Mama got seven."
+ },
+ "big-mama.bid.8": {
+  "h": "a8c3995eb183",
+  "text": "Big Mama got eight."
+ },
+ "big-mama.possible.1": {
+  "h": "6f13f1e35edf",
+  "text": "I got one, maybe two. Don’t rush me."
+ },
+ "big-mama.possible.2": {
+  "h": "0c9d7944ad9f",
+  "text": "I got two, maybe three. Don’t rush me."
+ },
+ "big-mama.possible.3": {
+  "h": "180e2de21b25",
+  "text": "I got three, maybe four. Don’t rush me."
+ },
+ "big-mama.possible.4": {
+  "h": "b4c668c0cfbb",
+  "text": "I got four, maybe five. Don’t rush me."
+ },
+ "big-mama.possible.5": {
+  "h": "5fdb9ee16c8e",
+  "text": "I got five, maybe six. Don’t rush me."
+ },
+ "big-mama.possible.6": {
+  "h": "eb6b7c5df5c6",
+  "text": "I got six, maybe seven. Don’t rush me."
+ },
+ "big-mama.made.0": {
+  "h": "6e07305d43be",
+  "text": "Mm! That’s a full plate."
+ },
+ "big-mama.made.1": {
+  "h": "5ed6e9963e89",
+  "text": "Now that’s how family plays."
+ },
+ "big-mama.set.0": {
+  "h": "449beb3a1531",
+  "text": "Hmph. Everybody hold your peace."
+ },
+ "big-mama.bigJoker": {
+  "h": "ea8ff6a1d468",
+  "text": "Big Joker came home!"
+ },
+ "big-mama.set.1": {
+  "h": "dccb1713604b",
+  "text": "We set. Go on, we’ll get ’em next hand."
+ },
+ "big-mama.boston": {
+  "h": "42602b101247",
+  "text": "Thirteen books! Somebody say grace!"
+ },
+ "big-mama.runWon": {
+  "h": "d3e8ad5dd226",
+  "text": "Ain’t nobody leaving this table hungry!"
+ },
+ "big-mama.runLost": {
+  "h": "077001123402",
+  "text": "It’s alright, baby. Big Mama still proud."
+ },
+ "unc.bid.1": {
+  "h": "6f90f7771c17",
+  "text": "Put Unc down for one."
+ },
+ "unc.bid.2": {
+  "h": "1200144f5aa3",
+  "text": "Put Unc down for two."
+ },
+ "unc.bid.3": {
+  "h": "7ab701fd99a1",
+  "text": "Put Unc down for three."
+ },
+ "unc.bid.4": {
+  "h": "d354d9b5b800",
+  "text": "Put Unc down for four."
+ },
+ "unc.bid.5": {
+  "h": "50aba570ac99",
+  "text": "Put Unc down for five."
+ },
+ "unc.bid.6": {
+  "h": "d9ae55e65871",
+  "text": "Put Unc down for six."
+ },
+ "unc.bid.7": {
+  "h": "45709034ca95",
+  "text": "Put Unc down for seven."
+ },
+ "unc.bid.8": {
+  "h": "9a7c1d86a20e",
+  "text": "Put Unc down for eight."
+ },
+ "unc.possible.1": {
+  "h": "88fa8ce49098",
+  "text": "One. Maybe two. Unc don’t rush."
+ },
+ "unc.possible.2": {
+  "h": "bfefdce80c8c",
+  "text": "Two. Maybe three. Unc don’t rush."
+ },
+ "unc.possible.3": {
+  "h": "a31eaf510303",
+  "text": "Three. Maybe four. Unc don’t rush."
+ },
+ "unc.possible.4": {
+  "h": "16e576649e2b",
+  "text": "Four. Maybe five. Unc don’t rush."
+ },
+ "unc.possible.5": {
+  "h": "4b185bb1ce3e",
+  "text": "Five. Maybe six. Unc don’t rush."
+ },
+ "unc.possible.6": {
+  "h": "b02010e1e252",
+  "text": "Six. Maybe seven. Unc don’t rush."
+ },
+ "unc.made.0": {
+  "h": "9f298407b322",
+  "text": "Old school. Still works."
+ },
+ "unc.made.1": {
+  "h": "f975bce97e8f",
+  "text": "Mm-hm. Unc been doing this."
+ },
+ "unc.set.0": {
+  "h": "3ffe8268dfcd",
+  "text": "Them young boys got lucky."
+ },
+ "unc.set.1": {
+  "h": "c5aa1f9effbf",
+  "text": "We set? Pass me my drink."
+ },
+ "unc.bigJoker": {
+  "h": "59972d5236dd",
+  "text": "Big Joker. Like I planned it."
+ },
+ "unc.runWon": {
+  "h": "c654cee1cb11",
+  "text": "Told y’all. Old heads run this."
+ },
+ "unc.boston": {
+  "h": "22d46637f960",
+  "text": "Thirteen! Ain’t seen that since seventy-nine!"
+ },
+ "unc.runLost": {
+  "h": "e876d76957f7",
+  "text": "Rack ’em up. Unc got time."
+ },
+ "deacon-earl.bid.1": {
+  "h": "5bd9d6592079",
+  "text": "I have one."
+ },
+ "deacon-earl.bid.2": {
+  "h": "55266fe98948",
+  "text": "I have two."
+ },
+ "deacon-earl.bid.0": {
+  "h": "13fbfd368bf0",
+  "text": "I have nothing, and I’m at peace with it."
+ },
+ "deacon-earl.bid.3": {
+  "h": "5608daa79878",
+  "text": "I have three."
+ },
+ "deacon-earl.bid.4": {
+  "h": "2a90cb213219",
+  "text": "I have four."
+ },
+ "deacon-earl.bid.5": {
+  "h": "fd9a9c35a8aa",
+  "text": "I have five."
+ },
+ "deacon-earl.bid.6": {
+  "h": "4aec5f693560",
+  "text": "I have six."
+ },
+ "deacon-earl.bid.7": {
+  "h": "677b6e43a7ad",
+  "text": "I have seven."
+ },
+ "deacon-earl.bid.8": {
+  "h": "6f6ba0c53138",
+  "text": "I have eight."
+ },
+ "deacon-earl.possible.1": {
+  "h": "6432aeb858ff",
+  "text": "One. Perhaps two."
+ },
+ "deacon-earl.possible.2": {
+  "h": "9afd85f94f34",
+  "text": "Two. Perhaps three."
+ },
+ "deacon-earl.possible.3": {
+  "h": "014aa41aaad8",
+  "text": "Three. Perhaps four."
+ },
+ "deacon-earl.possible.4": {
+  "h": "3c590a15eb8d",
+  "text": "Four. Perhaps five."
+ },
+ "deacon-earl.possible.5": {
+  "h": "4f59ab3b9b9f",
+  "text": "Five. Perhaps six."
+ },
+ "deacon-earl.possible.6": {
+  "h": "2f71869545cf",
+  "text": "Six. Perhaps seven."
+ },
+ "deacon-earl.made.0": {
+  "h": "9dfe2266e708",
+  "text": "Blessed and made."
+ },
+ "deacon-earl.made.1": {
+  "h": "32137b6205fc",
+  "text": "Quietly done."
+ },
+ "deacon-earl.set.0": {
+  "h": "1117ffe68714",
+  "text": "The Lord giveth. The other team taketh."
+ },
+ "deacon-earl.set.1": {
+  "h": "ca28834c72e8",
+  "text": "We’ll pray on it and count better."
+ },
+ "deacon-earl.bigJoker": {
+  "h": "d637b6154e4d",
+  "text": "The Big Joker. Amen."
+ },
+ "deacon-earl.boston": {
+  "h": "823d6ca443c1",
+  "text": "All thirteen. Hallelujah."
+ },
+ "deacon-earl.runWon": {
+  "h": "fe2755419fad",
+  "text": "Well done. Now let us eat."
+ },
+ "deacon-earl.runLost": {
+  "h": "f1e9e7768d53",
+  "text": "Pride comes before the fall. Let’s go again."
+ },
+ "auntie-pat.bid.1": {
+  "h": "3c4b3189f445",
+  "text": "I got one. Write it down."
+ },
+ "auntie-pat.bid.0": {
+  "h": "4c9eb1e5e6b0",
+  "text": "Nothing. And don’t look at me like that."
+ },
+ "auntie-pat.bid.2": {
+  "h": "697c3f9be2fd",
+  "text": "I got two. Write it down."
+ },
+ "auntie-pat.bid.4": {
+  "h": "3c3d28838785",
+  "text": "I got four. Write it down."
+ },
+ "auntie-pat.bid.3": {
+  "h": "939c5e91de1a",
+  "text": "I got three. Write it down."
+ },
+ "auntie-pat.bid.5": {
+  "h": "5ed0caa8fd56",
+  "text": "I got five. Write it down."
+ },
+ "auntie-pat.bid.6": {
+  "h": "65fbebae7126",
+  "text": "I got six. Write it down."
+ },
+ "auntie-pat.bid.7": {
+  "h": "a9bf59d5bf9c",
+  "text": "I got seven. Write it down."
+ },
+ "auntie-pat.bid.8": {
+  "h": "de4cc5cf9d81",
+  "text": "I got eight. Write it down."
+ },
+ "auntie-pat.possible.1": {
+  "h": "bb233ed29dd1",
+  "text": "One, maybe two. I’ll keep the receipt."
+ },
+ "auntie-pat.possible.2": {
+  "h": "f318529663ba",
+  "text": "Two, maybe three. I’ll keep the receipt."
+ },
+ "auntie-pat.possible.3": {
+  "h": "e4a86fc3088d",
+  "text": "Three, maybe four. I’ll keep the receipt."
+ },
+ "auntie-pat.possible.4": {
+  "h": "cc70c2bfe5b9",
+  "text": "Four, maybe five. I’ll keep the receipt."
+ },
+ "auntie-pat.possible.5": {
+  "h": "029a9b8afe66",
+  "text": "Five, maybe six. I’ll keep the receipt."
+ },
+ "auntie-pat.possible.6": {
+  "h": "e6ed205fb84d",
+  "text": "Six, maybe seven. I’ll keep the receipt."
+ },
+ "auntie-pat.made.0": {
+  "h": "ae973caf9e2f",
+  "text": "Made it. Writing it down."
+ },
+ "auntie-pat.made.1": {
+  "h": "b5b96049eafc",
+  "text": "Mm-hm. Receipts don’t lie."
+ },
+ "auntie-pat.set.0": {
+  "h": "9cd0fc45c602",
+  "text": "Don’t. Say. Nothing."
+ },
+ "auntie-pat.set.1": {
+  "h": "98e967e8c521",
+  "text": "Oh, I’ma remember that."
+ },
+ "auntie-pat.bigJoker": {
+  "h": "6c9cb3970e52",
+  "text": "Big Joker! Put that on the sheet."
+ },
+ "auntie-pat.boston": {
+  "h": "c5f8bf032f0e",
+  "text": "Thirteen books! Frame that score sheet."
+ },
+ "auntie-pat.runLost": {
+  "h": "aced77852934",
+  "text": "It’s on the sheet. We’re coming back."
+ },
+ "auntie-pat.runWon": {
+  "h": "e60a2d437f90",
+  "text": "All eight. I kept the receipts."
+ },
+ "deacon-jones.intro": {
+  "h": "003ef1da1170",
+  "text": "Sit up straight. This is a respectable table."
+ },
+ "deacon-jones.gloat": {
+  "h": "e334dece65de",
+  "text": "Set. Let the church say amen."
+ },
+ "deacon-jones.concede": {
+  "h": "7476169fb8cd",
+  "text": "Well. The Lord works in mysterious ways."
+ },
+ "deacon-pratt.concede": {
+  "h": "59bf561ec2a1",
+  "text": "Go on, then. You earned your plate."
+ },
+ "deacon-pratt.intro": {
+  "h": "313cdb5c8236",
+  "text": "Mind your manners. We play slow and we play holy."
+ },
+ "keke.intro": {
+  "h": "0b5c309d7cd7",
+  "text": "Kiki, you see their face?"
+ },
+ "keke.gloat": {
+  "h": "503a6feff263",
+  "text": "Told you we could read you."
+ },
+ "keke.concede": {
+  "h": "fdb74e60fb10",
+  "text": "Okay. Okay. Y’all got one."
+ },
+ "kiki.intro": {
+  "h": "4e33b482c269",
+  "text": "We been reading your face since you sat down."
+ },
+ "kiki.gloat": {
+  "h": "926916484330",
+  "text": "Knew it before you did."
+ },
+ "kiki.concede": {
+  "h": "79ccce1487f6",
+  "text": "Don’t get used to it."
+ },
+ "pop.intro": {
+  "h": "4bf59f6a3efb",
+  "text": "Evening, young folks. Pull up a chair."
+ },
+ "pop.gloat": {
+  "h": "6ba5ca5304c6",
+  "text": "Heh. Your Pop still got it."
+ },
+ "pop.concede": {
+  "h": "e597d0e50dac",
+  "text": "Alright now. Y’all can play."
+ },
+ "nana.gloat": {
+  "h": "fe74092c1485",
+  "text": "Sugar, that’s a set."
+ },
+ "nana.intro": {
+  "h": "6e00f99c80d1",
+  "text": "Sixty years of Saturday spades, sugar. Sit down."
+ },
+ "nana.concede": {
+  "h": "2392112a8ebb",
+  "text": "Well, look at you. I’m proud, and I’m mad."
+ },
+ "peanut.intro": {
+  "h": "6c6bc4ad4f0b",
+  "text": "Y’all ready? Y’all look scared."
+ },
+ "peanut.gloat": {
+  "h": "487276b3ce80",
+  "text": "Set! Set! Somebody get the camera!"
+ },
+ "peanut.concede": {
+  "h": "7f7f8e42e494",
+  "text": "Man, run it back. Run it back!"
+ },
+ "ray-ray.intro": {
+  "h": "b0de6bc12fc9",
+  "text": "We bid big over here, cuz. Keep up."
+ },
+ "ray-ray.concede": {
+  "h": "f5fce123e774",
+  "text": "Respect. Respect."
+ },
+ "ray-ray.gloat": {
+  "h": "8908b430f499",
+  "text": "Told you. Keep up, cuz."
+ },
+ "mother-evans.intro": {
+  "h": "0bd80be90e59",
+  "text": "Hats off at the table, please."
+ },
+ "mother-evans.gloat": {
+  "h": "c2d47449f570",
+  "text": "Set, baby. I counted every book."
+ },
+ "mother-evans.concede": {
+  "h": "7b1f773bd52b",
+  "text": "Hmph. Well. God is good."
+ },
+ "mother-lee.gloat": {
+  "h": "92a7109d3797",
+  "text": "Should’ve listened to your elders."
+ },
+ "mother-lee.intro": {
+  "h": "a8d996d02a7f",
+  "text": "We count books like we count the offering, baby. Twice."
+ },
+ "mother-lee.concede": {
+  "h": "7f086180b4d5",
+  "text": "Go on. We’ll pray for your next match."
+ },
+ "slim.intro": {
+  "h": "297ae983022c",
+  "text": "Cut the deck. I’ll wait."
+ },
+ "slim.gloat": {
+  "h": "bcd820d30e42",
+  "text": "Cute number. Still set."
+ },
+ "slim.concede": {
+  "h": "d10998f2bb4e",
+  "text": "Aight. You got that one."
+ },
+ "smooth.concede": {
+  "h": "a277fe4c9202",
+  "text": "Hmph. Beginner’s luck."
+ },
+ "smooth.gloat": {
+  "h": "5d50edafbb36",
+  "text": "Smooth, baby. Smooth."
+ },
+ "smooth.intro": {
+  "h": "252cc85be837",
+  "text": "Y’all nervous? Cute. Sit down."
+ },
+ "darnell.intro": {
+  "h": "1e3dc8328e0b",
+  "text": "So you’re the one she married into."
+ },
+ "darnell.gloat": {
+  "h": "d9dcd29177fd",
+  "text": "Mm. Like I thought."
+ },
+ "darnell.concede": {
+  "h": "dc3db5c852b3",
+  "text": "Fine. You can come to Thanksgiving."
+ },
+ "cheryl.gloat": {
+  "h": "93fd3a55ae56",
+  "text": "Get up."
+ },
+ "cheryl.intro": {
+  "h": "eac68683b8ff",
+  "text": "Where we from, you bid honest or you get up."
+ },
+ "cheryl.concede": {
+  "h": "a3a1cd95b7c3",
+  "text": "I’ll allow it. This time."
+ },
+ "uncle-lou.intro": {
+  "h": "2cfb13d506a7",
+  "text": "Look who made it to the big table!"
+ },
+ "uncle-lou.gloat": {
+  "h": "b27601e8ea5e",
+  "text": "That’s why they call us the Uncles!"
+ },
+ "uncle-bo.intro": {
+  "h": "c9e46806eaf5",
+  "text": "We been at this table since before it had legs."
+ },
+ "uncle-lou.concede": {
+  "h": "bb474c467c4f",
+  "text": "Well, I’ll be. They beat the Uncles!"
+ },
+ "uncle-bo.gloat": {
+  "h": "d65bf9483295",
+  "text": "Mm-hm. Sit down, youngblood."
+ },
+ "uncle-bo.concede": {
+  "h": "2bdc25b686d4",
+  "text": "Alright. The table’s yours now."
+ },
+ "pastor-rick.bid.2": {
+  "h": "0191a8a4e2e7",
+  "text": "I’ve got two. Amen."
+ },
+ "pastor-rick.bid.0": {
+  "h": "e13a7eed35ce",
+  "text": "I have nothing. But I have faith."
+ },
+ "pastor-rick.bid.1": {
+  "h": "fda045454428",
+  "text": "I’ve got one. Amen."
+ },
+ "pastor-rick.bid.4": {
+  "h": "b0339efa9869",
+  "text": "I’ve got four. Amen."
+ },
+ "pastor-rick.bid.3": {
+  "h": "068fb19687ef",
+  "text": "I’ve got three. Amen."
+ },
+ "pastor-rick.bid.5": {
+  "h": "6a213950dffb",
+  "text": "I’ve got five. Amen."
+ },
+ "pastor-rick.bid.7": {
+  "h": "1d32ed822046",
+  "text": "I’ve got seven. Amen."
+ },
+ "pastor-rick.bid.6": {
+  "h": "5bb4aded8b53",
+  "text": "I’ve got six. Amen."
+ },
+ "pastor-rick.bid.8": {
+  "h": "b76efda08f04",
+  "text": "I’ve got eight. Amen."
+ },
+ "pastor-rick.possible.1": {
+  "h": "d5df7e851175",
+  "text": "One. Maybe two, if the Lord allows."
+ },
+ "pastor-rick.possible.2": {
+  "h": "11693fbef722",
+  "text": "Two. Maybe three, if the Lord allows."
+ },
+ "pastor-rick.possible.3": {
+  "h": "14b03c02e706",
+  "text": "Three. Maybe four, if the Lord allows."
+ },
+ "pastor-rick.possible.4": {
+  "h": "98fcbfb00af0",
+  "text": "Four. Maybe five, if the Lord allows."
+ },
+ "pastor-rick.possible.6": {
+  "h": "8042451944dc",
+  "text": "Six. Maybe seven, if the Lord allows."
+ },
+ "pastor-rick.possible.5": {
+  "h": "16325c4dfd06",
+  "text": "Five. Maybe six, if the Lord allows."
+ },
+ "pastor-rick.made.1": {
+  "h": "35c28d4a3cd7",
+  "text": "Look at God."
+ },
+ "pastor-rick.made.0": {
+  "h": "029d44f7f9c6",
+  "text": "Amen! That’s a made bid."
+ },
+ "pastor-rick.set.1": {
+  "h": "74bbd694c2e7",
+  "text": "Even the saints get set."
+ },
+ "pastor-rick.set.0": {
+  "h": "50eb0d7d067a",
+  "text": "We keep a little. Grace covers it."
+ },
+ "pastor-rick.bigJoker": {
+  "h": "42b37ef3d57d",
+  "text": "Big Joker! Hallelujah!"
+ },
+ "pastor-rick.runWon": {
+  "h": "5be2fac9b9c6",
+  "text": "We ran it. Now let’s go eat."
+ },
+ "pastor-rick.boston": {
+  "h": "97722f746639",
+  "text": "All thirteen! Now that’s a testimony!"
+ },
+ "aunt-gloria.bid.0": {
+  "h": "731eb05ba236",
+  "text": "Nothing, darling. Not a thing."
+ },
+ "aunt-gloria.bid.1": {
+  "h": "9a1523000039",
+  "text": "Gloria’s got one, darling."
+ },
+ "pastor-rick.runLost": {
+  "h": "1e02dac358ad",
+  "text": "Weeping may endure for a night. We run it back in the morning."
+ },
+ "aunt-gloria.bid.2": {
+  "h": "43aaa33522b0",
+  "text": "Gloria’s got two, darling."
+ },
+ "aunt-gloria.bid.3": {
+  "h": "c9cb50469b7d",
+  "text": "Gloria’s got three, darling."
+ },
+ "aunt-gloria.bid.4": {
+  "h": "d06afc80078b",
+  "text": "Gloria’s got four, darling."
+ },
+ "aunt-gloria.bid.5": {
+  "h": "0dc812220b45",
+  "text": "Gloria’s got five, darling."
+ },
+ "aunt-gloria.bid.6": {
+  "h": "03e4c69279da",
+  "text": "Gloria’s got six, darling."
+ },
+ "aunt-gloria.bid.7": {
+  "h": "b9b26c751130",
+  "text": "Gloria’s got seven, darling."
+ },
+ "aunt-gloria.bid.8": {
+  "h": "892e88cf249d",
+  "text": "Gloria’s got eight, darling."
+ },
+ "aunt-gloria.possible.1": {
+  "h": "8e5d6318f9e4",
+  "text": "One, maybe two. Don’t rush a lady."
+ },
+ "aunt-gloria.possible.2": {
+  "h": "79f84ad921a5",
+  "text": "Two, maybe three. Don’t rush a lady."
+ },
+ "aunt-gloria.possible.3": {
+  "h": "6382334bbd40",
+  "text": "Three, maybe four. Don’t rush a lady."
+ },
+ "aunt-gloria.possible.4": {
+  "h": "32edd94abdad",
+  "text": "Four, maybe five. Don’t rush a lady."
+ },
+ "aunt-gloria.possible.5": {
+  "h": "2750612d2bd9",
+  "text": "Five, maybe six. Don’t rush a lady."
+ },
+ "aunt-gloria.possible.6": {
+  "h": "6a86a75a9d6f",
+  "text": "Six, maybe seven. Don’t rush a lady."
+ },
+ "aunt-gloria.made.0": {
+  "h": "70511a591382",
+  "text": "Mm. Effortless."
+ },
+ "aunt-gloria.made.1": {
+  "h": "270038061d29",
+  "text": "That’s how you do it with grace."
+ },
+ "aunt-gloria.set.0": {
+  "h": "751f8a05257a",
+  "text": "Well. That was tacky."
+ },
+ "aunt-gloria.set.1": {
+  "h": "13fed6cbf274",
+  "text": "Fan me. Just fan me."
+ },
+ "aunt-gloria.bigJoker": {
+  "h": "efe1e35f4257",
+  "text": "The Big Joker, darling!"
+ },
+ "aunt-gloria.boston": {
+  "h": "12361d6419f3",
+  "text": "All thirteen! Somebody take my picture!"
+ },
+ "aunt-gloria.runWon": {
+  "h": "bdb9923ae4da",
+  "text": "Won it all in my Sunday best."
+ },
+ "aunt-gloria.runLost": {
+  "h": "9f4bea6588e6",
+  "text": "We’ll be back. Looking better, too."
+ },
+ "lil-sis-jada.bid.1": {
+  "h": "0aaca02955dd",
+  "text": "I got one. I counted twice."
+ },
+ "lil-sis-jada.bid.0": {
+  "h": "c158337211a8",
+  "text": "I have zero. Literally zero."
+ },
+ "lil-sis-jada.bid.2": {
+  "h": "6248f747e7af",
+  "text": "I got two. I counted twice."
+ },
+ "lil-sis-jada.bid.3": {
+  "h": "25822e23faa7",
+  "text": "I got three. I counted twice."
+ },
+ "lil-sis-jada.bid.4": {
+  "h": "dc9ce494c7bb",
+  "text": "I got four. I counted twice."
+ },
+ "lil-sis-jada.bid.5": {
+  "h": "36be75ab9e81",
+  "text": "I got five. I counted twice."
+ },
+ "lil-sis-jada.bid.6": {
+  "h": "90595bb71764",
+  "text": "I got six. I counted twice."
+ },
+ "lil-sis-jada.bid.7": {
+  "h": "afbab07342f8",
+  "text": "I got seven. I counted twice."
+ },
+ "lil-sis-jada.bid.8": {
+  "h": "848712a48251",
+  "text": "I got eight. I counted twice."
+ },
+ "lil-sis-jada.possible.1": {
+  "h": "3238f4f63f43",
+  "text": "One, maybe two. It’s math."
+ },
+ "lil-sis-jada.possible.2": {
+  "h": "45e75eca68c6",
+  "text": "Two, maybe three. It’s math."
+ },
+ "lil-sis-jada.possible.3": {
+  "h": "c3f4d510e71d",
+  "text": "Three, maybe four. It’s math."
+ },
+ "lil-sis-jada.possible.4": {
+  "h": "993812e12721",
+  "text": "Four, maybe five. It’s math."
+ },
+ "lil-sis-jada.made.0": {
+  "h": "e096190b8faf",
+  "text": "Called it."
+ },
+ "lil-sis-jada.possible.5": {
+  "h": "45feec6eaf50",
+  "text": "Five, maybe six. It’s math."
+ },
+ "lil-sis-jada.possible.6": {
+  "h": "74cf935931a0",
+  "text": "Six, maybe seven. It’s math."
+ },
+ "lil-sis-jada.made.1": {
+  "h": "16478fc63bf4",
+  "text": "Told you I can count."
+ },
+ "lil-sis-jada.set.1": {
+  "h": "b4496346e66a",
+  "text": "Okay, that one’s on me."
+ },
+ "lil-sis-jada.set.0": {
+  "h": "4a8bd5c669cf",
+  "text": "That’s not my fault. I have receipts."
+ },
+ "lil-sis-jada.bigJoker": {
+  "h": "18d407386b52",
+  "text": "Big Joker! Yes!"
+ },
+ "lil-sis-jada.boston": {
+  "h": "790c390281c5",
+  "text": "Thirteen! I’m telling everybody!"
+ },
+ "lil-sis-jada.runWon": {
+  "h": "daa621189095",
+  "text": "We won! I’m posting this."
+ },
+ "lil-sis-jada.runLost": {
+  "h": "bcb73e1e9d0e",
+  "text": "Rematch. I’m keeping score this time."
+ },
+ "cousin-man-man.bid.1": {
+  "h": "c80e6afb2752",
+  "text": "I got one! Easy!"
+ },
+ "cousin-man-man.bid.0": {
+  "h": "ec039308b696",
+  "text": "I got nothing, but I’m still talking!"
+ },
+ "cousin-man-man.bid.2": {
+  "h": "832d64de7a7b",
+  "text": "I got two! Easy!"
+ },
+ "cousin-man-man.bid.3": {
+  "h": "de0b396028e5",
+  "text": "I got three! Easy!"
+ },
+ "cousin-man-man.bid.5": {
+  "h": "29ddddc2654e",
+  "text": "I got five! Easy!"
+ },
+ "cousin-man-man.bid.4": {
+  "h": "69f398214a78",
+  "text": "I got four! Easy!"
+ },
+ "cousin-man-man.bid.6": {
+  "h": "1596698014c6",
+  "text": "I got six! Easy!"
+ },
+ "cousin-man-man.bid.7": {
+  "h": "2c7c246334e2",
+  "text": "I got seven! Easy!"
+ },
+ "cousin-man-man.bid.8": {
+  "h": "f9ee07a0c886",
+  "text": "I got eight! Easy!"
+ },
+ "cousin-man-man.possible.2": {
+  "h": "43954b24a33f",
+  "text": "Two, maybe three! Don’t worry about it!"
+ },
+ "cousin-man-man.possible.1": {
+  "h": "c79a4052f204",
+  "text": "One, maybe two! Don’t worry about it!"
+ },
+ "cousin-man-man.possible.3": {
+  "h": "4466a5cf6fe9",
+  "text": "Three, maybe four! Don’t worry about it!"
+ },
+ "cousin-man-man.possible.4": {
+  "h": "864c32d208b3",
+  "text": "Four, maybe five! Don’t worry about it!"
+ },
+ "cousin-man-man.possible.5": {
+  "h": "57e81a58c1c9",
+  "text": "Five, maybe six! Don’t worry about it!"
+ },
+ "cousin-man-man.possible.6": {
+  "h": "ed9eb11c8f1e",
+  "text": "Six, maybe seven! Don’t worry about it!"
+ },
+ "cousin-man-man.made.0": {
+  "h": "3195df8e2e4f",
+  "text": "What I tell you?! What I tell you?!"
+ },
+ "cousin-man-man.made.1": {
+  "h": "c9ff6df49531",
+  "text": "Too easy, cuz!"
+ },
+ "cousin-man-man.set.0": {
+  "h": "64e470157092",
+  "text": "Hold on, hold on. That don’t count."
+ },
+ "cousin-man-man.set.1": {
+  "h": "ef7badf660d6",
+  "text": "Man, forget that hand."
+ },
+ "cousin-man-man.bigJoker": {
+  "h": "db37216f1033",
+  "text": "Big Joker! Somebody hold me back!"
+ },
+ "cousin-man-man.boston": {
+  "h": "c40a83f43ef2",
+  "text": "Thirteen! Call everybody!"
+ },
+ "cousin-man-man.runLost": {
+  "h": "acb1585cf3fd",
+  "text": "They got lucky and they know it."
+ },
+ "cousin-man-man.runWon": {
+  "h": "82eb4bb289b2",
+  "text": "We ran it! Where the cameras at?!"
+ },
+ "big-tone.intro": {
+  "h": "4d297d9b3560",
+  "text": "Have a seat. I’ll get you right."
+ },
+ "big-tone.gloat": {
+  "h": "79385a10f1f5",
+  "text": "Nicked you. Should’ve kept it clean."
+ },
+ "big-tone.concede": {
+  "h": "d646edd84bae",
+  "text": "Alright. You got a clean cut."
+ },
+ "fade.intro": {
+  "h": "99487203ccd9",
+  "text": "Clean lines only. Every extra book is a nick."
+ },
+ "fade.gloat": {
+  "h": "5cfc052cee18",
+  "text": "Took a little off the top."
+ },
+ "fade.concede": {
+  "h": "861d4b9b2b38",
+  "text": "Respect. That line-up was crisp."
+ },
+ "minister-keys.gloat": {
+  "h": "ab520be5d1ee",
+  "text": "And the choir said… set!"
+ },
+ "minister-keys.intro": {
+  "h": "2807c72a2e58",
+  "text": "Can I get a witness at this table?"
+ },
+ "minister-keys.concede": {
+  "h": "4d8f2d52e220",
+  "text": "Well, all right. Take it home."
+ },
+ "sister-harmony.intro": {
+  "h": "eca8930f086e",
+  "text": "Call and response, baby. You call, we answer."
+ },
+ "sister-harmony.gloat": {
+  "h": "743e83ae11f4",
+  "text": "Hit that high note, didn’t we?"
+ },
+ "sister-harmony.concede": {
+  "h": "d513fbe0f597",
+  "text": "Okay! Sing it, then!"
+ },
+ "jay.intro": {
+  "h": "2145bda74893",
+  "text": "We ran the numbers on y’all."
+ },
+ "jay.gloat": {
+  "h": "dd7e2a598e1f",
+  "text": "Statistically, that was obvious."
+ },
+ "jay.concede": {
+  "h": "b70c3d567f7c",
+  "text": "Huh. That wasn’t in the model."
+ },
+ "brianna.gloat": {
+  "h": "967ec6467b2a",
+  "text": "Should’ve studied."
+ },
+ "brianna.concede": {
+  "h": "d568a3f875f8",
+  "text": "Okay. You pass."
+ },
+ "brianna.intro": {
+  "h": "b7d1c961cd94",
+  "text": "We ran the numbers. Bid low and pray."
+ },
+ "uncle-smoke.intro": {
+  "h": "2018a4f46b06",
+  "text": "Grab a plate. You gonna need it."
+ },
+ "uncle-smoke.gloat": {
+  "h": "4a8924806a03",
+  "text": "Burnt! Told you it was hot!"
+ },
+ "uncle-smoke.concede": {
+  "h": "bbb36ffea436",
+  "text": "Alright, alright. You can cook."
+ },
+ "big-rob.gloat": {
+  "h": "02ff35d2ef55",
+  "text": "Too hot for you!"
+ },
+ "big-rob.intro": {
+  "h": "622c2366989a",
+  "text": "First one off the grill always burns."
+ },
+ "big-rob.concede": {
+  "h": "2048225a1451",
+  "text": "Man, pass me a napkin. You got that."
+ },
+ "lil-kev.concede": {
+  "h": "af8cb37dcdfd",
+  "text": "Man… that’s not fair."
+ },
+ "lil-kev.intro": {
+  "h": "a0b77e0ef4f5",
+  "text": "Y’all ready? I been practicing."
+ },
+ "lil-kev.gloat": {
+  "h": "0549978b152c",
+  "text": "Ha! Set! I’m telling everybody!"
+ },
+ "tasha.intro": {
+  "h": "29c242145aab",
+  "text": "Kev, hold your cards down."
+ },
+ "tasha.gloat": {
+  "h": "764299488f25",
+  "text": "Told you. I’m the good one."
+ },
+ "tasha.concede": {
+  "h": "e99a6c23a34c",
+  "text": "Okay, okay. Good game."
+ },
+ "uncle-junior.intro": {
+  "h": "18b5b9b623c0",
+  "text": "Welcome to the reunion! Grab a shirt!"
+ },
+ "uncle-junior.gloat": {
+  "h": "72b982ce76af",
+  "text": "Set! That’s family business!"
+ },
+ "uncle-junior.concede": {
+  "h": "dff16ae7b3a3",
+  "text": "Alright now, y’all can play!"
+ },
+ "cousin-neecy.concede": {
+  "h": "45d91a325f67",
+  "text": "Deleting that one. Y’all won."
+ },
+ "cousin-neecy.intro": {
+  "h": "cefb46da6334",
+  "text": "Hold on, let me get this on camera."
+ },
+ "cousin-neecy.gloat": {
+  "h": "f514fada20d3",
+  "text": "I got that on video. Set!"
+ },
+ "brother-carl.gloat": {
+  "h": "cd86f217ecab",
+  "text": "Mm. Set. Bless your heart."
+ },
+ "brother-carl.concede": {
+  "h": "2e2553eee9dc",
+  "text": "Well played. Truly."
+ },
+ "brother-carl.intro": {
+  "h": "d854e1aa96cb",
+  "text": "Welcome. Please, have a seat."
+ },
+ "sister-mae.intro": {
+  "h": "75fbd0dd9c21",
+  "text": "Church folks play for keeps, sugar."
+ },
+ "sister-mae.concede": {
+  "h": "ec0e09a59104",
+  "text": "Mm-hm. You earned that."
+ },
+ "sister-mae.gloat": {
+  "h": "fcdcc85e896b",
+  "text": "Set, sugar. We don’t play in church."
+ },
+ "spade.badBid": {
+  "h": "a9b225d50e4e",
+  "text": "That’s a bad bid, cuz.",
+  "from": "bad-bid-trailer/assets/audio/mascot-bad-bid.wav"
+ },
+ "spade.tagline": {
+  "h": "35d9426325d8",
+  "text": "Everybody’s a genius till they get set.",
+  "from": "bad-bid-trailer/assets/audio/mascot-genius.wav"
+ },
+ "hattie.bidLow": {
+  "h": "d67d8685f60d",
+  "text": "Playing it safe. Grandma likes that."
+ },
+ "hattie.oppCut": {
+  "h": "b6862678337b",
+  "text": "Oh, they cut us? Okay. I see you."
+ },
+ "hattie.bidBig": {
+  "h": "89febc8d98f7",
+  "text": "That many? Baby, I hope you counted."
+ },
+ "hattie.cut.0": {
+  "h": "212b17ca5a63",
+  "text": "Cut it, baby! Cut it!"
+ },
+ "hattie.cut.1": {
+  "h": "06249f1d503c",
+  "text": "Grandma saw that coming."
+ },
+ "hattie.madeIt": {
+  "h": "c69fe2277bf4",
+  "text": "That’s the bid, baby. Now duck."
+ },
+ "dre.oppCut": {
+  "h": "d0e99c2724c6",
+  "text": "They cutting us now? Bet."
+ },
+ "dre.bidBig": {
+  "h": "b193f5851a8a",
+  "text": "Big talk, cuz. Back it up."
+ },
+ "dre.bidLow": {
+  "h": "90eed6139528",
+  "text": "Low and slow. I like it."
+ },
+ "dre.madeIt": {
+  "h": "6653049b02bc",
+  "text": "That’s our number. Now duck."
+ },
+ "dre.cut.0": {
+  "h": "92b1e67e1206",
+  "text": "Chop it! Chop it!"
+ },
+ "dre.cut.1": {
+  "h": "69561c23f0ab",
+  "text": "Snatched it. Easy."
+ },
+ "tay.bidBig": {
+  "h": "2decf2d8f7ef",
+  "text": "Oh, you feeling brave? Let’s go!"
+ },
+ "tay.bidLow": {
+  "h": "75098f35a964",
+  "text": "Scared money don’t make money, but okay."
+ },
+ "tay.oppCut": {
+  "h": "40c70f68e8ea",
+  "text": "Did they just cut us?! Okay. Okay."
+ },
+ "tay.madeIt": {
+  "h": "b8cc29448cf6",
+  "text": "We made it! Stop taking books!"
+ },
+ "tay.cut.1": {
+  "h": "b47e2e75e4ab",
+  "text": "Nope! That’s ours!"
+ },
+ "tay.cut.0": {
+  "h": "c7dd9375c325",
+  "text": "Cut! Get that outta here!"
+ },
+ "big-mama.oppCut": {
+  "h": "618643a987cd",
+  "text": "Hmph. Somebody’s being rude."
+ },
+ "big-mama.bidBig": {
+  "h": "84d13dc99d18",
+  "text": "That’s a lot of plate. Hope you hungry."
+ },
+ "big-mama.bidLow": {
+  "h": "da9ceefc36c1",
+  "text": "Keep it low. Big Mama approves."
+ },
+ "big-mama.madeIt": {
+  "h": "84231d34197a",
+  "text": "That’s the bid. Now hold back, baby."
+ },
+ "big-mama.cut.0": {
+  "h": "c064b274d1ef",
+  "text": "Mm! Cut it like a pound cake."
+ },
+ "big-mama.cut.1": {
+  "h": "f8e1450101ba",
+  "text": "Big Mama cuts, too, baby."
+ },
+ "unc.oppCut": {
+  "h": "24d0879221b8",
+  "text": "They cutting already? Okay."
+ },
+ "unc.bidBig": {
+  "h": "25c40019d32d",
+  "text": "Whoa now. Unc hope you know something."
+ },
+ "unc.bidLow": {
+  "h": "7137c30668d4",
+  "text": "Smart. Unc likes a clean bid."
+ },
+ "unc.cut.0": {
+  "h": "d77706358a9d",
+  "text": "Cut! Unc taught you that."
+ },
+ "unc.madeIt": {
+  "h": "f631e864f409",
+  "text": "We there. Don’t get greedy now."
+ },
+ "unc.cut.1": {
+  "h": "bf15fea5090f",
+  "text": "Snip snip. Old school."
+ },
+ "deacon-earl.oppCut": {
+  "h": "bed773e4ee73",
+  "text": "They cut us. I forgive them."
+ },
+ "deacon-earl.bidBig": {
+  "h": "773e86cda56c",
+  "text": "That is a bold faith you have."
+ },
+ "deacon-earl.bidLow": {
+  "h": "29928ecd12e0",
+  "text": "Humility. I like it."
+ },
+ "deacon-earl.madeIt": {
+  "h": "17005aa83883",
+  "text": "The bid is made. Now we rest."
+ },
+ "deacon-earl.cut.0": {
+  "h": "47286d723c9c",
+  "text": "Cut. Quietly."
+ },
+ "deacon-earl.cut.1": {
+  "h": "ce60d07de0ab",
+  "text": "Blessed be the spade."
+ },
+ "auntie-pat.oppCut": {
+  "h": "7a90c2a28cbf",
+  "text": "Oh, they cut us? I saw it. I wrote it."
+ },
+ "auntie-pat.bidLow": {
+  "h": "a31f9f7d99ae",
+  "text": "Low bid. Noted."
+ },
+ "auntie-pat.bidBig": {
+  "h": "7e88d4f47b9f",
+  "text": "That many? I’m writing that down, too."
+ },
+ "auntie-pat.cut.0": {
+  "h": "a8ddc696f9a8",
+  "text": "Cut. Writing it down."
+ },
+ "auntie-pat.madeIt": {
+  "h": "71e0fa3813af",
+  "text": "That’s the number. Don’t take another one."
+ },
+ "auntie-pat.cut.1": {
+  "h": "8978d2dab40c",
+  "text": "Mm-hm. Put that on the sheet."
+ },
+ "pastor-rick.bidLow": {
+  "h": "d58da5202e4a",
+  "text": "Humble and wise."
+ },
+ "pastor-rick.oppCut": {
+  "h": "88b4a8b26594",
+  "text": "They cut us. Forgive them, Lord."
+ },
+ "pastor-rick.bidBig": {
+  "h": "ab7f78273e13",
+  "text": "Now that’s faith. Big faith."
+ },
+ "pastor-rick.cut.0": {
+  "h": "f764f36337d7",
+  "text": "Cut! Glory!"
+ },
+ "pastor-rick.cut.1": {
+  "h": "903f609f67c9",
+  "text": "Can I get an amen for that cut?"
+ },
+ "pastor-rick.madeIt": {
+  "h": "8dfc4b5ed163",
+  "text": "Bid’s made. Let’s not get greedy, saints."
+ },
+ "aunt-gloria.oppCut": {
+  "h": "b55ebbd5d5f8",
+  "text": "How rude. They cut us."
+ },
+ "aunt-gloria.bidLow": {
+  "h": "047d6bf444b7",
+  "text": "Modest. Very elegant."
+ },
+ "aunt-gloria.bidBig": {
+  "h": "333d8557f945",
+  "text": "Ambitious, darling. I adore it."
+ },
+ "aunt-gloria.madeIt": {
+  "h": "0bc5fdd17518",
+  "text": "That’s our bid, darling. Ease up."
+ },
+ "aunt-gloria.cut.0": {
+  "h": "47dfe7b72ed7",
+  "text": "Cut, darling. Gracefully."
+ },
+ "aunt-gloria.cut.1": {
+  "h": "13d037567e40",
+  "text": "Snipped it like a ribbon."
+ },
+ "lil-sis-jada.oppCut": {
+  "h": "af791b2a982e",
+  "text": "They cut us? That’s statistically rude."
+ },
+ "lil-sis-jada.bidBig": {
+  "h": "79b99c0beb79",
+  "text": "That many? Okay, I’m doing the math."
+ },
+ "lil-sis-jada.madeIt": {
+  "h": "f7577c3dd065",
+  "text": "We made it! Stop now, seriously."
+ },
+ "lil-sis-jada.bidLow": {
+  "h": "c1b97b693cec",
+  "text": "Low bid. Smart. I would’ve said that."
+ },
+ "lil-sis-jada.cut.0": {
+  "h": "b5f940f51cc2",
+  "text": "Cut! I called it!"
+ },
+ "cousin-man-man.bidBig": {
+  "h": "8ba5bb65e4c9",
+  "text": "That’s what I’m talking about! Go big!"
+ },
+ "cousin-man-man.oppCut": {
+  "h": "bf08143c28c1",
+  "text": "They cut us?! Run it back, run it back!"
+ },
+ "lil-sis-jada.cut.1": {
+  "h": "f34b6332d121",
+  "text": "That’s a cut. I counted."
+ },
+ "cousin-man-man.bidLow": {
+  "h": "31cb53b263a7",
+  "text": "That’s it?! Okay, okay, I’m cool."
+ },
+ "cousin-man-man.madeIt": {
+  "h": "a09afb1bbe5c",
+  "text": "Bid’s made! Don’t get greedy, cuz!"
+ },
+ "cousin-man-man.cut.0": {
+  "h": "3d9c199ee08f",
+  "text": "Cut! What I tell you?!"
+ },
+ "cousin-man-man.cut.1": {
+  "h": "946890ecb5e2",
+  "text": "Chop chop, cuz!"
+ },
+ "deacon-jones.cutYou": {
+  "h": "a1df1852e181",
+  "text": "A cut. In the Lord’s house."
+ },
+ "deacon-jones.gotCut": {
+  "h": "e6af1a28589c",
+  "text": "Well. That was unexpected."
+ },
+ "deacon-pratt.gotCut": {
+  "h": "3b610f9307b9",
+  "text": "Mm. Who taught you that?"
+ },
+ "keke.cutYou": {
+  "h": "416cfaca2bfe",
+  "text": "Saw that coming. Cut."
+ },
+ "deacon-pratt.cutYou": {
+  "h": "071c62551baa",
+  "text": "Cut. Let the church say amen."
+ },
+ "keke.gotCut": {
+  "h": "8ffa039a4fff",
+  "text": "Kiki, did you see that?"
+ },
+ "kiki.gotCut": {
+  "h": "1ec8f1304305",
+  "text": "Okay, we didn’t read that one."
+ },
+ "pop.cutYou": {
+  "h": "86fe14f3542e",
+  "text": "Heh. Your Pop still cuts."
+ },
+ "kiki.cutYou": {
+  "h": "a91c450149f2",
+  "text": "Read you like a book. Cut."
+ },
+ "pop.gotCut": {
+  "h": "49e137ebab52",
+  "text": "Well, look at you, young folks."
+ },
+ "nana.cutYou": {
+  "h": "caaacf0ea58d",
+  "text": "Sugar, I cut that."
+ },
+ "nana.gotCut": {
+  "h": "4dadd08b2b15",
+  "text": "Oh, you got me. Hmph."
+ },
+ "peanut.cutYou": {
+  "h": "7dddbba047b2",
+  "text": "Cut! Get the camera!"
+ },
+ "peanut.gotCut": {
+  "h": "56eb484e834d",
+  "text": "Hey! That’s not fair!"
+ },
+ "ray-ray.cutYou": {
+  "h": "8d65ba2596ff",
+  "text": "Cut, cuz. Keep up."
+ },
+ "ray-ray.gotCut": {
+  "h": "b6b55eecc219",
+  "text": "Okay. Respect the cut."
+ },
+ "mother-evans.cutYou": {
+  "h": "4f3fa168efd7",
+  "text": "Cut. I counted that, too."
+ },
+ "mother-evans.gotCut": {
+  "h": "26aec5c22ece",
+  "text": "Hmph. Mind your manners."
+ },
+ "mother-lee.cutYou": {
+  "h": "f3617afdc258",
+  "text": "Cut, baby. Like the offering."
+ },
+ "mother-lee.gotCut": {
+  "h": "8cac88da60e0",
+  "text": "Well. That wasn’t very Christian."
+ },
+ "smooth.cutYou": {
+  "h": "1ecec8b9192b",
+  "text": "Smooth cut, baby."
+ },
+ "slim.cutYou": {
+  "h": "441db78f6ebb",
+  "text": "Cut. Cute card, though."
+ },
+ "slim.gotCut": {
+  "h": "c1c948ac4b88",
+  "text": "Aight. That’s a cut."
+ },
+ "smooth.gotCut": {
+  "h": "0706a7622a4e",
+  "text": "Hmph. Lucky."
+ },
+ "darnell.cutYou": {
+  "h": "e54e660a1801",
+  "text": "Cut. Welcome to the family."
+ },
+ "darnell.gotCut": {
+  "h": "f2027303d0c1",
+  "text": "Mm. Okay. I see you."
+ },
+ "cheryl.cutYou": {
+  "h": "ea1cc5ff67b4",
+  "text": "Cut. Get up."
+ },
+ "cheryl.gotCut": {
+  "h": "ca475b0b1201",
+  "text": "I’ll allow it."
+ },
+ "uncle-lou.gotCut": {
+  "h": "5be395faa657",
+  "text": "Ha! Youngblood got a cut in!"
+ },
+ "uncle-bo.cutYou": {
+  "h": "d1af24b9aa46",
+  "text": "Cut. Sit down."
+ },
+ "uncle-lou.cutYou": {
+  "h": "b1ee6e1ae50b",
+  "text": "Cut! That’s how the Uncles do it!"
+ },
+ "big-tone.cutYou": {
+  "h": "9e6382e3f57b",
+  "text": "Took a little off the top."
+ },
+ "big-tone.gotCut": {
+  "h": "516606372edd",
+  "text": "Nice line-up on that cut."
+ },
+ "uncle-bo.gotCut": {
+  "h": "d03ff955b760",
+  "text": "Mm-hm. Okay, youngblood."
+ },
+ "fade.cutYou": {
+  "h": "9badb38b5028",
+  "text": "Clean cut. Next."
+ },
+ "fade.gotCut": {
+  "h": "30566126ec8b",
+  "text": "Okay. That was crisp."
+ },
+ "minister-keys.cutYou": {
+  "h": "b58a269d58fd",
+  "text": "Choir, say it with me. Cut!"
+ },
+ "minister-keys.gotCut": {
+  "h": "a0ea007b70c2",
+  "text": "Can I get a witness? That was a cut."
+ },
+ "sister-harmony.cutYou": {
+  "h": "3d0724ab8590",
+  "text": "Cut! Hit that note!"
+ },
+ "sister-harmony.gotCut": {
+  "h": "c1571551360f",
+  "text": "Oh, you can sing, too?"
+ },
+ "jay.cutYou": {
+  "h": "6b8a6738516c",
+  "text": "Cut. Predicted."
+ },
+ "jay.gotCut": {
+  "h": "3abdbb0ace8c",
+  "text": "That wasn’t in the model."
+ },
+ "brianna.cutYou": {
+  "h": "ebeea5f764e7",
+  "text": "Cut. Should’ve studied."
+ },
+ "brianna.gotCut": {
+  "h": "bc49bb5b43af",
+  "text": "Okay, that was smart."
+ },
+ "uncle-smoke.cutYou": {
+  "h": "43dbb9bc9fc1",
+  "text": "Cut! Too hot!"
+ },
+ "big-rob.cutYou": {
+  "h": "71dea094c3b0",
+  "text": "Off the grill! Cut!"
+ },
+ "uncle-smoke.gotCut": {
+  "h": "fdbeccb9cef1",
+  "text": "Ooh. You can cook."
+ },
+ "big-rob.gotCut": {
+  "h": "e21ab9d86f4b",
+  "text": "Okay, you got some heat."
+ },
+ "lil-kev.cutYou": {
+  "h": "1c4608e022e0",
+  "text": "Cut! I’m telling everybody!"
+ },
+ "lil-kev.gotCut": {
+  "h": "8071b7d6b29f",
+  "text": "Hey! You can’t do that!"
+ },
+ "tasha.cutYou": {
+  "h": "a46fddbb33f2",
+  "text": "Cut. Watch and learn, Kev."
+ },
+ "tasha.gotCut": {
+  "h": "3beb65f4962e",
+  "text": "Okay. Good cut."
+ },
+ "uncle-junior.cutYou": {
+  "h": "d994cd815182",
+  "text": "Cut! That’s family business!"
+ },
+ "uncle-junior.gotCut": {
+  "h": "7d9df053ae05",
+  "text": "Oh, now you cutting? Okay!"
+ },
+ "cousin-neecy.cutYou": {
+  "h": "df720c555ca5",
+  "text": "I got that cut on camera!"
+ },
+ "cousin-neecy.gotCut": {
+  "h": "83df958aae7a",
+  "text": "I’m not posting that one."
+ },
+ "brother-carl.cutYou": {
+  "h": "80a5ad263d03",
+  "text": "Cut. Bless your heart."
+ },
+ "brother-carl.gotCut": {
+  "h": "afb86b886b36",
+  "text": "My. A cut. Well done."
+ },
+ "sister-mae.gotCut": {
+  "h": "a2e6694d467c",
+  "text": "Mm. The Lord sees that cut."
+ },
+ "sister-mae.cutYou": {
+  "h": "aa76c5867d32",
+  "text": "Cut, sugar. Church folks cut."
+ },
+ "spade.boston": {
+  "h": "949c740709fc",
+  "text": "Thirteen?! Okay, show-off."
+ },
+ "spade.bought": {
+  "h": "e3a9025c00c3",
+  "text": "Now that’s a plate."
+ },
+ "spade.shop.0": {
+  "h": "5e1bb6e54fca",
+  "text": "Fix yourself a plate."
+ },
+ "spade.shop.1": {
+  "h": "756e1600f69f",
+  "text": "Spend it or save it, genius."
+ },
+ "spade.shop.2": {
+  "h": "a54b2f68162c",
+  "text": "Go ’head. Buy something."
+ },
+ "dre.setThem": {
+  "h": "fdd8f0653a0a",
+  "text": "They’re set. Shouldn’t have reached."
+ },
+ "hattie.matchWon": {
+  "h": "b0ea91fdf55d",
+  "text": "One more down, baby. Who’s next?"
+ },
+ "hattie.setThem": {
+  "h": "232514488288",
+  "text": "Got ’em! Baby, they bit off more than they could chew."
+ },
+ "tay.setThem": {
+  "h": "3ffd44bf6c53",
+  "text": "We set ’em! Look at their faces!"
+ },
+ "dre.matchWon": {
+  "h": "68efc6bfa54f",
+  "text": "Next. Keep it moving."
+ },
+ "tay.matchWon": {
+  "h": "6c06497b8d9b",
+  "text": "We won! Who’s next?!"
+ },
+ "big-mama.setThem": {
+  "h": "dfea628db842",
+  "text": "Set! Fix them a to-go plate."
+ },
+ "big-mama.matchWon": {
+  "h": "87cf9c484533",
+  "text": "That’s dinner. Who wants dessert?"
+ },
+ "unc.setThem": {
+  "h": "aab16033c07c",
+  "text": "Set. Old school still bites."
+ },
+ "unc.matchWon": {
+  "h": "039bff870813",
+  "text": "Another one. Unc still got it."
+ },
+ "deacon-earl.setThem": {
+  "h": "701383285fea",
+  "text": "They’re set. The Lord humbles the proud."
+ },
+ "deacon-earl.matchWon": {
+  "h": "c5bea971cc17",
+  "text": "A good match. Onward."
+ },
+ "auntie-pat.setThem": {
+  "h": "cfcd91be0ed1",
+  "text": "Set. I’m writing that down in ink."
+ },
+ "auntie-pat.matchWon": {
+  "h": "ef839b940f8d",
+  "text": "That’s a win. Logged it."
+ },
+ "pastor-rick.setThem": {
+  "h": "f000e605524e",
+  "text": "They’re set! Lord, have mercy on them."
+ },
+ "pastor-rick.matchWon": {
+  "h": "a07d6a8a6149",
+  "text": "Victory! Send in the next ones."
+ },
+ "aunt-gloria.setThem": {
+  "h": "715a4bdb823c",
+  "text": "Set, darling. Bless their hearts."
+ },
+ "aunt-gloria.matchWon": {
+  "h": "9acb6a4b4044",
+  "text": "Another win, and not a hair out of place."
+ },
+ "lil-sis-jada.matchWon": {
+  "h": "91040012a5ae",
+  "text": "Another win. I called it."
+ },
+ "lil-sis-jada.setThem": {
+  "h": "a66c2fdcc962",
+  "text": "Set! I counted every one of their books."
+ },
+ "cousin-man-man.matchWon": {
+  "h": "41158278e996",
+  "text": "Who next?! Line ’em up, cuz!"
+ },
+ "cousin-man-man.setThem": {
+  "h": "e5e48117f824",
+  "text": "SET! Get up, get up, get up!"
+ }
+}

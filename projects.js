@@ -3,7 +3,8 @@
 //         "lab"  = built, runs on my machine or a private link
 //         "family" = live, but the link stays private (kids' voices/photos)
 // img: file in img/ (no extension). Omit for a bold type card.
-// video: file in video/ (no extension), plays in the detail sheet.
+// video: file in video/ (no extension), plays in the player.
+// hero: position in the top carousel (needs img + a url or video).
 
 window.CATEGORIES = [
   { id: "kids",  label: "For the kids" },
@@ -17,7 +18,7 @@ window.CATEGORIES = [
 window.PROJECTS = [
   // ── For the kids ────────────────────────────────────────────
   {
-    id: "puppet", cat: "kids", status: "live",
+    id: "puppet", hero: 1, cat: "kids", status: "live",
     title: "Puppet Show",
     line: "Point a phone at someone. On the TV, they become a dinosaur.",
     body: "The phone tracks body pose and sends only the joint positions to a TV page, where a cartoon dinosaur is rigged to them. No video leaves the phone. Built after the kids lost it over the yoga coach and wanted to be the character themselves.",
@@ -25,7 +26,7 @@ window.PROJECTS = [
     url: "https://atlspartan33.github.io/puppet-show/", img: "puppet",
   },
   {
-    id: "glam", cat: "kids", featured: true, status: "live",
+    id: "glam", hero: 2, cat: "kids", featured: true, status: "live",
     title: "Tori's Glam Studio",
     line: "A live makeup-and-costume mirror that follows her face.",
     body: "Face tracking in the browser pins makeup, crowns and costumes to her as she moves. Snap a picture, keep a gallery. Designed for her tablet and her taste.",
@@ -33,7 +34,7 @@ window.PROJECTS = [
     url: "https://atlspartan33.github.io/tori-glam-studio/", img: "glam",
   },
   {
-    id: "herolab", cat: "kids", status: "live",
+    id: "herolab", hero: 3, cat: "kids", status: "live",
     title: "TJ's Hero Lab",
     line: "A superhero mirror: helmets, face paint, and powers that fire from your hands.",
     body: "Sibling to the Glam Studio. Helmets sculpted in Blender, hand tracking triggers the powers, GPU particle effects, and two kids can suit up at the same time for combo moves.",
@@ -41,7 +42,7 @@ window.PROJECTS = [
     url: "https://atlspartan33.github.io/tj-hero-lab/", img: "herolab",
   },
   {
-    id: "puzzles", cat: "kids", status: "live",
+    id: "puzzles", hero: 5, cat: "kids", status: "live",
     title: "Puzzle Time",
     line: "Offline jigsaws cut from our own picture-book art.",
     body: "Each kid gets their own size: 4 to 9 pieces for TJ, 12 to 48 for Tori. Installs on the tablet and works with no Wi-Fi, which is the whole point in the car.",
@@ -77,11 +78,12 @@ window.PROJECTS = [
     tags: ["3D", "Science"], img: "space",
   },
   {
-    id: "chain", cat: "kids", status: "lab",
+    id: "chain", cat: "kids", status: "live",
     title: "Chain Reaction",
     line: "A Lego-pegboard physics toy. Build it, then knock the first one over.",
     body: "Ramps, dominoes and balls on a pegboard with real physics, plus a science tab with fire, rockets, steam and foam, and a sticker book for the good runs.",
     tags: ["Physics", "For TJ"], img: "chain",
+    url: "play/chain/",
   },
   {
     id: "shrink", cat: "kids", status: "lab",
@@ -91,18 +93,20 @@ window.PROJECTS = [
     tags: ["Science", "6 sims"], img: "shrink",
   },
   {
-    id: "deepdig", cat: "kids", status: "lab",
+    id: "deepdig", cat: "kids", status: "live",
     title: "Deep Dig",
     line: "Dig from Atlanta straight down to the center of the Earth.",
     body: "Every layer from the backyard to the inner core in 3D, plus a volcano cut-away.",
     tags: ["3D", "Geology"], img: "deepdig",
+    url: "play/deepdig/",
   },
   {
-    id: "minus", cat: "kids", status: "lab",
+    id: "minus", cat: "kids", status: "live",
     title: "Minus Monsters",
     line: "Feed the monsters, master subtraction.",
     body: "A fluency game aimed at the hard part, crossing ten. Includes a voice-answer lightning round, boss monsters, and a monster maker.",
     tags: ["Math", "Voice input", "For Tori"],
+    url: "play/minus/", img: "minus",
   },
   {
     id: "chess", cat: "kids", status: "lab",
@@ -114,26 +118,29 @@ window.PROJECTS = [
 
   // ── Games ───────────────────────────────────────────────────
   {
-    id: "badbid", cat: "games", featured: true, status: "lab",
+    id: "badbid", hero: 4, cat: "games", featured: true, status: "live",
     title: "BAD BID",
     line: "A Spades roguelike set at the cookout.",
     body: "Balatro-style runs on top of real Spades. Bid, run the table, stack perks, and beat a lineup of bosses from the church fellowship hall to the backyard. Comes with a 40-second trailer.",
     tags: ["Card roguelike", "Original art", "Trailer"],
     img: "badbid", video: "badbid",
+    url: "play/badbid/",
   },
   {
-    id: "crazyyear", cat: "games", status: "lab",
+    id: "crazyyear", cat: "games", status: "live",
     title: "CRAZY YEAR",
     line: "Crazy Eights as a year-long points race against rival characters.",
     body: "Chain cards for points, pick a starter perk, and race a rival whose next score is always on screen, so you can see exactly how far behind you are.",
     tags: ["Card roguelike", "Phone"],
+    url: "play/crazyyear/", img: "crazyyear",
   },
   {
-    id: "turfwar", cat: "games", status: "lab",
+    id: "turfwar", cat: "games", status: "live",
     title: "TURF WAR",
     line: "Scrabble where every word is territory.",
     body: "A word's score is its strength. Outscore it with a crossing word and you flip it to your side. Thirty points or more and it becomes a fortress.",
     tags: ["Word game", "vs. bot"],
+    url: "play/turfwar/", img: "turfwar",
   },
   {
     id: "deadend", cat: "games", status: "lab",
@@ -182,45 +189,41 @@ window.PROJECTS = [
     url: "https://atlspartan33.github.io/piano-coach/", img: "piano",
   },
   {
-    id: "inkchoir", cat: "play", status: "lab",
+    id: "inkchoir", cat: "play", status: "live",
     title: "Ink Choir",
     line: "Touch to sing. Fluid ink that harmonizes with you.",
     body: "Drag across the screen to stir ink and voice a synthetic choir. Record eight-second loops and layer them into a chord.",
     tags: ["WebGL", "Audio synth"], img: "inkchoir",
+    url: "play/inkchoir/",
   },
   {
-    id: "jelly", cat: "play", status: "lab",
+    id: "jelly", cat: "play", status: "live",
     title: "Jelly Doodles",
     line: "Draw a shape. It comes alive.",
     body: "Anything you draw becomes a squishy, googly-eyed jelly with real soft-body physics. Fling it, flip gravity, dress it up.",
     tags: ["Physics", "Drawing"], img: "jelly",
+    url: "play/jelly/",
   },
   {
-    id: "planet", cat: "play", status: "lab",
+    id: "planet", hero: 6, cat: "play", status: "live",
     title: "Pocket Planet",
     line: "Terraform a planet that fits in your hand.",
     body: "Raise land, pour oceans, plant trees, build houses and drop in sheep while a sun orbits through day and night.",
     tags: ["3D", "Sandbox"], img: "planet",
+    url: "play/planet/",
   },
   {
-    id: "horizon", cat: "play", status: "lab",
+    id: "horizon", cat: "play", status: "live",
     title: "Horizon Dive",
     line: "A real-time black-hole ray tracer with a time-dilation clock.",
     body: "Fall toward Sagittarius A* and watch the light bend in real time, while a second clock shows how much time has passed back home.",
     tags: ["WebGL", "Physics"],
+    url: "play/horizon/",
   },
 
   // ── Film & motion ───────────────────────────────────────────
   {
-    id: "softness", cat: "film", featured: true, status: "lab",
-    title: "The Man Who Mistook Hardness for Strength",
-    line: "An 88-second personal film. Hard cuts that turn into water.",
-    body: "The first half is slabs, snap cuts and heavy type; it shatters and becomes a water shader for the second. A piece about what strength actually is.",
-    tags: ["Motion graphics", "Shader", "88s"],
-    img: "softness", video: "softness",
-  },
-  {
-    id: "tinydoor", cat: "film", status: "lab",
+    id: "tinydoor", cat: "film", featured: true, status: "lab",
     title: "Tiny Door",
     line: "A 24-second infinite-zoom loop through the kids' imaginary places.",
     body: "Through a snow globe, into a fall park, over Atlanta at night, out to the moon, and back home. It never ends, by design.",

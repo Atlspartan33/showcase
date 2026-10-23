@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#0B0E1A">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="description" content="Dig from home all the way down to Earth's core, then make a volcano erupt.">
+  <link rel="icon" href="./icons/icon-192.png">
+  <title>Deep Dig</title>
+  <script type="module" crossorigin src="./assets/index-BJ0RPwY6.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DD_UH7zX.css">
+<link rel="manifest" href="./manifest.webmanifest"></head>
+<body>
+  <canvas id="scene" aria-label="The Earth, cut open to show its layers. A yellow digger sits on top."></canvas>
+  <div id="heat" aria-hidden="true"></div>
+
+  <div id="spots">
+    <button id="hs-digger" class="spot" aria-label="The digger. Drag it down to dig."><span class="ring"></span></button>
+    <button id="hs-volcano" class="spot" aria-label="Volcano: go see how it erupts"><span class="ring"></span><span class="badge"></span></button>
+    <button id="hs-melt" class="spot" aria-label="Heat the rock"><span class="ring"></span><span class="badge"></span></button>
+    <button id="hs-erupt" class="spot" aria-label="Make it erupt"><span class="ring"></span><span class="badge"></span></button>
+  </div>
+
+  <div id="bubble" aria-hidden="true"><svg class="wire"><line x1="0" y1="0" x2="0" y2="0"/><circle r="7"/></svg><div class="lens"></div><div class="chip"><span class="i-apple"></span><span class="t">Crust: thin as an apple peel</span></div></div>
+
+  <div id="label" role="status" aria-live="polite">
+    <div class="art"></div>
+    <div class="words"><div class="name"></div><div class="line"></div></div>
+    <div class="answer"><span class="a-icon"></span><span class="a-star"></span></div>
+    <div class="compare"><span class="c-core"></span><span class="eq">≈</span><span class="c-sun"></span></div>
+  </div>
+
+  <div id="thermo" aria-hidden="true">
+    <div class="tube"><div class="fill"></div></div>
+    <div class="bulb"></div>
+    <div class="read"></div>
+  </div>
+  <div id="depth" aria-live="off"><div class="km"></div><div class="car"><span class="i-car"></span><span class="h"></span></div></div>
+
+  <div id="guess" role="group" aria-label="Guess first!">
+    <div class="q"></div>
+    <button class="g g0"></button>
+    <button class="g g1"></button>
+  </div>
+
+  <div id="lever" role="button" tabindex="0" aria-label="Dig down">
+    <div class="slot"></div>
+    <div class="knob"><span class="i"></span></div>
+  </div>
+  <button id="btn-up" class="round" aria-label="Go back up to the top"></button>
+  <button id="btn-home" class="round" aria-label="Back to the whole Earth"></button>
+  <button id="btn-replay" class="round" aria-label="Watch the volcano again"></button>
+  <button id="btn-storm" class="round" aria-label="Hurricanes: show or hide" aria-pressed="false"></button>
+
+  <div id="corner">
+    <button id="btn-sound" class="mini" aria-label="Sound on or off"></button>
+    <button id="btn-info" class="mini" aria-label="About and credits (for grown-ups)">i</button>
+  </div>
+
+  <div id="hand" aria-hidden="true"></div>
+
+  <dialog id="about">
+    <h2>About Deep Dig</h2>
+    <p>Made for Tori and TJ. The layers are drawn at their true sizes (the crust really is that thin). Every fact shown comes from NASA, USGS, National Geographic Education, Britannica or Oregon State's Volcano World — see <code>SOURCES.md</code> in the project.</p>
+    <ul>
+      <li>Earth map and clouds: <b>Solar System Scope</b> textures (CC BY 4.0, solarsystemscope.com/textures), based on NASA imagery. Colours adjusted.</li>
+      <li>The digger, volcano and everything inside the Earth are drawn in code. The digger is pretend — no machine could dig down there.</li>
+      <li>Honest simplifications: the volcano is drawn 2× taller than it is wide above ground; its magma story is sped up from years to seconds; the mantle's slow creep is sped up too.</li>
+    </ul>
+    <form method="dialog"><button>Close</button></form>
+  </dialog>
+
+</body>
+</html>

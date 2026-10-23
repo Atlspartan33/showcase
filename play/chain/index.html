@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#13213a">
+<meta name="mobile-web-app-capable" content="yes">
+<title>Chain Reaction</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&display=swap" rel="stylesheet">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/","rapier":"https://cdn.jsdelivr.net/npm/@dimforge/rapier2d-compat@0.14.0/rapier.es.js"}}</script>
+<style>
+  :root{
+    --bg:#13213a; --panel:#1c2f50; --panel2:#243b63; --ink:#ffffff; --muted:#b9c8e4;
+    --go:#23a043; --go-dark:#16732e; --yellow:#f2cd37; --yellow-dark:#c9a41c; --red:#e2231a; --blue:#1e6fd9;
+    --focus:#ffe066;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%;background:var(--bg);color:var(--ink);font-family:Fredoka,"Segoe UI",system-ui,sans-serif;overflow:hidden;
+    user-select:none;-webkit-user-select:none;touch-action:none;overscroll-behavior:none}
+  button{font:inherit;color:inherit;border:0;background:none;cursor:pointer;touch-action:none}
+  button:focus-visible{outline:4px solid var(--focus);outline-offset:3px}
+  .hide{display:none!important}
+  svg{display:block}
+
+  /* ---------- home ---------- */
+  #home{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;overflow-y:auto;padding:max(20px,env(safe-area-inset-top)) 16px 28px;touch-action:pan-y}
+  #title{display:flex;flex-wrap:wrap;justify-content:center;gap:0 .35em;margin:6px 0 18px;font-weight:700;letter-spacing:.02em;line-height:.95;
+    font-size:clamp(40px,9vw,88px);text-transform:uppercase}
+  #title span{display:inline-block;text-shadow:0 5px 0 rgba(0,0,0,.28)}
+  #title .w{white-space:nowrap}
+  #levels{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;width:min(100%,1040px)}
+  .card{touch-action:manipulation;position:relative;border-radius:22px;background:var(--panel);padding:8px;box-shadow:0 6px 0 rgba(0,0,0,.3);transition:transform .12s}
+  .card:active{transform:translateY(4px) scale(.98);box-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .card img{display:block;width:100%;aspect-ratio:11/13;border-radius:15px;background:#8fc4ee}
+  .card .num{position:absolute;left:0;top:0;width:52px;height:52px;border-radius:18px 8px 18px 8px;background:var(--yellow);color:#14171a;
+    display:grid;place-items:center;font-size:30px;font-weight:700;box-shadow:0 4px 0 var(--yellow-dark)}
+  .card .done{position:absolute;right:6px;top:6px;width:46px;height:46px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.35))}
+  .card.next{outline:5px solid var(--yellow);animation:bob 1.4s ease-in-out infinite}
+  .card.free{grid-column:span 2;display:flex;align-items:center;gap:14px;background:linear-gradient(135deg,#e2231a,#fe8a18)}
+  .card.free img{width:44%;aspect-ratio:11/13}
+  .card.free .label{font-size:clamp(26px,4.4vw,44px);font-weight:700;text-transform:uppercase;line-height:1;text-align:left;text-shadow:0 4px 0 rgba(0,0,0,.25)}
+  @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+
+  /* ---------- play ---------- */
+  #play{position:fixed;inset:0;display:grid;grid-template:"bar" auto "stage" 1fr "tray" auto / minmax(0,1fr);
+    padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+  #bar{grid-area:bar;display:flex;align-items:center;gap:12px;padding:10px 14px}
+  #bar .grow{flex:1}
+  #stage{grid-area:stage;position:relative;min-height:0}
+  #stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #fx{pointer-events:none}
+  #tray{grid-area:tray;display:flex;flex-wrap:wrap;justify-content:center;gap:10px;padding:10px 14px 14px;min-width:0}
+  @media (min-aspect-ratio:1/1){
+    #play{grid-template:"stage bar" auto "stage tray" 1fr / 1fr 236px}
+    #bar{flex-wrap:wrap;justify-content:space-between;padding:14px 14px 6px 0}
+    #bar .grow{display:none}
+    #bar #go{order:-1;width:100%}
+    #tray{display:grid;grid-template-columns:1fr 1fr;align-content:start;padding:8px 14px 14px 0}
+    #tray.many{grid-template-columns:repeat(3,1fr);gap:8px}
+  }
+
+  /* Lego-brick buttons: studs on top, pressed = pushed down. */
+  .brick{position:relative;display:grid;place-items:center;border-radius:14px;min-width:64px;height:64px;padding:0 14px;
+    box-shadow:0 6px 0 var(--d),0 8px 14px rgba(0,0,0,.3);background:var(--c);transition:transform .08s,box-shadow .08s,opacity .2s}
+  .brick::before{content:"";position:absolute;top:-7px;left:50%;transform:translateX(-50%);width:62%;height:9px;
+    background:radial-gradient(circle at 20% 60%,var(--c) 7px,transparent 8px) 0 0/33.3% 100% repeat-x;filter:brightness(1.08)}
+  .brick:active,.brick.down{transform:translateY(5px);box-shadow:0 1px 0 var(--d),0 2px 6px rgba(0,0,0,.3)}
+  .brick[disabled]{opacity:.35;pointer-events:none}
+  #home-btn{--c:#1e6fd9;--d:#12489a}
+  #reset{--c:var(--yellow);--d:var(--yellow-dark);color:#14171a}
+  #clear{--c:#5b6b86;--d:#3c4960}
+  #go{--c:var(--go);--d:var(--go-dark);height:78px;min-width:150px;font-size:40px;font-weight:700;letter-spacing:.04em;gap:10px;grid-auto-flow:column;text-shadow:0 3px 0 rgba(0,0,0,.25)}
+  #go.wait{filter:saturate(.25);opacity:.6}
+  .pulse{animation:pulse 1s ease-in-out infinite}
+  @keyframes pulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.08);filter:brightness(1.18)}}
+  #clear .ring{position:absolute;inset:-6px;border-radius:18px;border:5px solid #fff;clip-path:inset(0 100% 0 0);transition:clip-path 0s}
+  #clear.holding .ring{clip-path:inset(0 0 0 0);transition:clip-path 1s linear}
+
+  .tile{position:relative;flex:0 0 auto;width:92px;height:92px;border-radius:18px;background:var(--panel2);box-shadow:0 5px 0 rgba(0,0,0,.35);padding:6px;transition:transform .1s,opacity .2s}
+  .tile img{width:100%;height:100%;object-fit:contain;pointer-events:none}
+  .tile:active{transform:translateY(3px)}
+  .tile .n{position:absolute;right:-6px;top:-6px;min-width:34px;height:34px;border-radius:17px;background:#fff;color:#14171a;display:grid;place-items:center;font-size:22px;font-weight:700;box-shadow:0 3px 0 rgba(0,0,0,.3)}
+  .tile.want{outline:5px solid var(--yellow);animation:pulse 1s ease-in-out infinite}
+  .tile.empty{opacity:.3;pointer-events:none}
+  @media (max-aspect-ratio:1/1) and (min-width:600px){.tile{width:112px;height:112px}}
+  @media (min-aspect-ratio:1/1){.tile{width:auto;height:auto;aspect-ratio:1}}
+
+  /* tray tabs (free build) */
+  .tile.spacer{visibility:hidden;box-shadow:none}
+  #tray .tabs{flex-basis:100%;display:flex;gap:10px;justify-content:center}
+  #tray .tab{width:88px;height:52px;border-radius:14px;background:var(--panel);display:grid;place-items:center;opacity:.55;box-shadow:0 4px 0 rgba(0,0,0,.35);transition:opacity .15s}
+  #tray .tab.on{background:#3a5a94;opacity:1;outline:3px solid #fff;outline-offset:-3px}
+  @media (min-aspect-ratio:1/1){#tray .tabs{grid-column:1/-1}}
+  #book-btn{--c:#7a4bb4;--d:#55307f;gap:6px;grid-auto-flow:column;font-size:26px;font-weight:700;padding:0 12px}
+  #objective{position:absolute;left:12px;top:12px;width:78px;height:78px;border-radius:50%;background:#fff;display:grid;place-items:center;font-size:44px;
+    box-shadow:0 5px 0 rgba(0,0,0,.3);pointer-events:none}
+  #objective.got{background:#7dff9a;box-shadow:0 0 0 6px #f5b400,0 5px 0 rgba(0,0,0,.3)}
+  /* sticker book */
+  #book{position:fixed;inset:0;z-index:16;background:rgba(10,18,34,.8);display:grid;place-items:center;padding:16px;animation:fadein .2s}
+  .book-box{width:min(100%,720px);max-height:100%;overflow:auto;background:var(--panel);border-radius:26px;padding:16px 18px 20px;box-shadow:0 10px 0 rgba(0,0,0,.35)}
+  .book-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+  #book-count{font-size:34px;font-weight:700}
+  #book-close{--c:#e2231a;--d:#9c1510;min-width:64px}
+  #book-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(84px,1fr));gap:14px}
+  .sticker{aspect-ratio:1;border-radius:50%;background:#33466a;display:grid;place-items:center;font-size:48px;box-shadow:inset 0 0 0 4px rgba(255,255,255,.12)}
+  .sticker span{filter:grayscale(1) brightness(.6);opacity:.35}
+  .sticker.have{background:#fff;box-shadow:0 5px 0 rgba(0,0,0,.3),inset 0 0 0 5px #f5b400}
+  .sticker.have span{filter:none;opacity:1}
+  #book-hint{min-height:96px;margin:0 0 14px;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+  #book-hint img{width:84px;height:84px;border-radius:16px;background:var(--panel2)}
+  #book-hint .q{font-size:56px}
+  #book-hint .eq{font-size:40px;font-weight:700;color:var(--muted)}
+  #sticker-pop{position:fixed;left:50%;top:38%;width:180px;height:180px;margin:-90px 0 0 -90px;border-radius:50%;background:#fff;display:grid;place-items:center;
+    font-size:110px;z-index:17;pointer-events:none;box-shadow:0 0 0 10px #f5b400,0 16px 40px rgba(0,0,0,.45)}
+  .card.book{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:linear-gradient(135deg,#7a4bb4,#c870a0);min-height:120px}
+  .card.book .bk-e{font-size:clamp(40px,6vw,64px);line-height:1}
+  .card.book .bk-n{font-size:30px;font-weight:700}
+  #hand{position:fixed;left:0;top:0;font-size:64px;pointer-events:none;z-index:20;filter:drop-shadow(0 6px 6px rgba(0,0,0,.4));transform-origin:30% 10%;opacity:0}
+  #win{position:fixed;inset:0;z-index:15;display:grid;place-items:center;background:rgba(10,18,34,.55);animation:fadein .25s}
+  #win .box{display:flex;flex-direction:column;align-items:center;gap:22px}
+  #win .bigstar{width:min(46vw,260px);animation:starpop .6s cubic-bezier(.2,1.6,.4,1)}
+  #win .row{display:flex;gap:18px}
+  #next{--c:var(--go);--d:var(--go-dark);height:96px;min-width:170px}
+  #again{--c:var(--yellow);--d:var(--yellow-dark);height:96px;min-width:96px;color:#14171a}
+  @keyframes starpop{from{transform:scale(0) rotate(-90deg)}to{transform:scale(1) rotate(0)}}
+  @keyframes fadein{from{opacity:0}}
+  #boot{position:fixed;inset:0;display:grid;place-items:center;font-size:28px;color:var(--muted);z-index:30;background:var(--bg)}
+  #boot .spin{width:64px;height:64px;border-radius:12px;background:var(--red);animation:spin 1s cubic-bezier(.6,0,.4,1) infinite;margin:0 auto 16px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+
+  @media (min-aspect-ratio:1/1) and (min-width:1100px){#levels{grid-template-columns:repeat(5,minmax(0,1fr))}}
+  @media (max-width:900px){#levels{grid-template-columns:repeat(3,minmax(0,1fr))}}
+  @media (max-width:540px){
+    #levels{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+    .brick{height:56px;min-width:56px}
+    #go{height:64px;min-width:120px;font-size:32px}
+    .tile{width:78px;height:78px}
+  }
+</style>
+</head>
+<body>
+<div id="boot"><div><div class="spin"></div>Loading…</div></div>
+
+<section id="home" class="hide">
+  <h1 id="title" aria-label="Chain Reaction"></h1>
+  <div id="levels"></div>
+</section>
+
+<section id="play" class="hide">
+  <div id="bar">
+    <button id="home-btn" class="brick" aria-label="Home">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M12 3 2 12h3v8h5v-5h4v5h5v-8h3z"/></svg>
+    </button>
+    <button id="clear" class="brick hide" aria-label="Hold to clear everything">
+      <span class="ring"></span>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff"><path d="M9 3h6l1 2h4v2H4V5h4zm-3 6h12l-1 12H7z"/></svg>
+    </button>
+    <button id="book-btn" class="brick" aria-label="Sticker book">
+      <svg width="30" height="30" viewBox="0 0 24 24"><path fill="#f5b400" stroke="#fff" stroke-width="1.4" stroke-linejoin="round" d="M12 1.8l3 6.4 7 .8-5.2 4.8 1.4 6.9L12 17.2l-6.2 3.5 1.4-6.9L2 9l7-.8z"/></svg><span id="book-n">0</span>
+    </button>
+    <span class="grow"></span>
+    <button id="reset" class="brick" aria-label="Put everything back">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#14171a" stroke-width="3" stroke-linecap="round"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 3v5h5" /></svg>
+    </button>
+    <button id="go" class="brick" aria-label="Go">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="#fff"><path d="M6 3.5v17l15-8.5z"/></svg><span id="go-label">GO</span>
+    </button>
+  </div>
+  <div id="stage"><canvas id="c"></canvas><canvas id="fx"></canvas><div id="objective" class="hide" aria-label="Goal"><span></span></div></div>
+  <div id="tray" aria-label="Pieces"></div>
+</section>
+
+<div id="win" class="hide">
+  <div class="box">
+    <svg class="bigstar" viewBox="0 0 24 24"><path fill="#f5b400" stroke="#fff" stroke-width="1.2" stroke-linejoin="round" d="M12 1.8l3 6.4 7 .8-5.2 4.8 1.4 6.9L12 17.2l-6.2 3.5 1.4-6.9L2 9l7-.8z"/></svg>
+    <div class="row">
+      <button id="again" class="brick" aria-label="Play again">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#14171a" stroke-width="3" stroke-linecap="round"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 3v5h5"/></svg>
+      </button>
+      <button id="next" class="brick" aria-label="Next machine">
+        <svg width="64" height="44" viewBox="0 0 36 24" fill="#fff"><path d="M3 3v18l13-9zM18 3v18l13-9z"/></svg>
+      </button>
+    </div>
+  </div>
+</div>
+<div id="book" class="hide" role="dialog" aria-label="Sticker book">
+  <div class="book-box">
+    <div class="book-top"><span id="book-count"></span><button id="book-close" class="brick" aria-label="Close sticker book">
+      <svg width="30" height="30" viewBox="0 0 24 24" stroke="#fff" stroke-width="3.5" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
+    <div id="book-hint"></div>
+    <div id="book-grid"></div>
+  </div>
+</div>
+<div id="sticker-pop" class="hide" aria-hidden="true"></div>
+<div id="hand" aria-hidden="true">👆🏾</div>
+
+<script type="module" src="js/main.js"></script>
+<script>
+  // If the 3D/physics libraries can't download, don't sit on "Loading..." forever: show a big retry button.
+  setTimeout(() => {
+    const b = document.getElementById('boot'); if (!b) return;
+    b.innerHTML = '<button class="brick" style="--c:#23a043;--d:#16732e;height:110px;min-width:200px" aria-label="Try again" onclick="location.reload()"><svg width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 3v5h5"/></svg></button>';
+  }, 15000);
+</script>
+</body>
+</html>
